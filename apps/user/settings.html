@@ -1,0 +1,401 @@
+<div class="theme-title">
+    <div class="media">
+        <div>
+            <h2>تنظیمات</h2>
+            <h4>بروزرسانی تنظیمات برنامه</h4>
+        </div>
+        <div class="media-body text-right"><a class="icon-btn btn-outline-light btn-sm close-panel"
+                                              href="#"><i
+                data-feather="x"></i></a></div>
+    </div>
+    <div class="profile-box">
+        <div class="media">
+            <div class="profile"><img class="bg-img" src="assets/images/contact/2.jpg" alt="Avatar"/></div>
+            <div class="details">
+                <h5>{{ user.fullname }}</h5>
+                <h6>{{ user.birth_date }}</h6>
+            </div>
+            <div class="details edit">
+                <form class="form-radious form-sm">
+                    <div class="form-group mb-2">
+                        <input class="form-control" type="text" name="username" value="{{ user.fullname }}"/>
+                    </div>
+                    <div class="form-group mb-0">
+                        <input class="form-control" type="text" name="address" value="{{ user.birth_date }}"/>
+                    </div>
+                </form>
+            </div>
+            <div class="media-body"><a class="icon-btn btn-outline-light btn-sm pull-right edit-btn"
+                                       href="#"> <i
+                    data-feather="edit"> </i></a></div>
+        </div>
+    </div>
+</div>
+<div class="setting-block">
+    <div class="block">
+        <div class="media">
+            <div class="media-body">
+                <h3>حساب کاربری</h3>
+            </div>
+            <div class="media-right"><a class="icon-btn btn-outline-light btn-sm pull-right previous"
+                                        href="#"> <i
+                    data-feather="chevron-left"> </i></a></div>
+        </div>
+        <div class="theme-according" id="accordion">
+            <div class="card">
+                <div class="card-header" id="headingTwo" role="heading" data-toggle="collapse"
+                     data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo"><a>امنیت<i
+                        class="fa fa-angle-down"></i></a></div>
+                <div class="collapse show" id="collapseTwo" aria-labelledby="headingTwo"
+                     data-parent="#accordion">
+                    <div class="card-body">
+                        <div class="media">
+                            <div class="media-body">
+                                <h5>نمایش اعلان های امنیتی</h5>
+                            </div>
+                            <div class="media-right">
+                                <input class="js-switch8" type="checkbox"/>
+                            </div>
+                        </div>
+                        <p><b>نکته : </b>برای دریافت اعلان های امنیتی مربوط به نرم افزار این گزینه را روشن
+                            بگذارید..</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header" id="headingOne" role="heading" data-toggle="collapse"
+                     data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne"><a>حریم
+                    خصوصی<i
+                            class="fa fa-angle-down"></i></a></div>
+                <div class="collapse" id="collapseOne" aria-labelledby="headingOne"
+                     data-parent="#accordion">
+                    <div class="card-body">
+                        <ul class="privacy">
+                            <li>
+                                <h5>آخرین حضور</h5>
+                                <input class="js-switch10" type="checkbox" checked=""/>
+                                <p><b>نکته : </b>با فعال کردن این گزینه تاریخ و ساعت آخرین حضور شما نمایش
+                                    داده میشود.</p>
+                            </li>
+                            <li>
+                                <h5>تصویر پروفایل</h5>
+                                <input class="js-switch11" type="checkbox"/>
+                                <p>
+                                    اگر میخواهید تصویر پروفایل شما قابل مشاهده نباشد این گزینه را خاموش
+                                    کنید.</p>
+                            </li>
+                            <li>
+                                <h5>در باره من</h5>
+                                <input class="js-switch12" type="checkbox"/>
+                                <p><b>نکته : </b>با روشن کردن این گزینه کاربران میتوانند متن در باره من شما
+                                    را ببینند..</p>
+                            </li>
+                            <li>
+                                <h5>وضعیت</h5>
+                                <input class="js-switch14" type="checkbox"/>
+                                <p><b>نکته : </b>با روشن کردن این گزینه کاربران میتوانند آخرین وضعیت های
+                                    ارسالی شما را ببینند.
+                                </p>
+                            </li>
+                            <li>
+                                <h5>بازدیدکنندگان </h5>
+                                <input class="js-switch16" type="checkbox"/>
+                                <p><b>نکته : </b>با خاموش کردن این گزینه نمیتوانید بازدیدکنندگان یک پست در
+                                    گروه را مشاهده کنید.
+                                </p>
+                            </li>
+                            <li>
+                                <h5>گروه ها</h5>
+                                <input class="js-switch13" type="checkbox" checked=""/>
+                                <p><b>نکته : </b>با روشن کردن این گزینه به کاربران اجازه میدهید شما را به
+                                    گروه ها اضافه کنند.
+                                </p>
+                            </li>
+                            <li>
+                                <h5>قفل صفحه نمایش (نیاز به TouchID دارد)</h5>
+                                <input class="js-switch17" type="checkbox"/>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header" id="headingThree" role="heading" data-toggle="collapse"
+                     data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree"><a>احراز
+                    هویت دومرحله
+                    ای<i class="fa fa-angle-down"></i></a></div>
+                <div class="collapse" id="collapseThree" aria-labelledby="headingThree"
+                     data-parent="#accordion">
+                    <div class="card-body">
+                        <div class="media">
+                            <div class="media-body">
+                                <h5>فعال</h5>
+                            </div>
+                            <div class="media-right">
+                                <input class="js-switch9" type="checkbox"/>
+                            </div>
+                        </div>
+                        <p><b>نکته : </b>برای افزودن ایمنی بیشتر به پیام رسان خود ؛ احراز هویت دومرحله ای را
+                            فعال کنید.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header" id="headingFour" role="heading" data-toggle="collapse"
+                     data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour"><a>تغییر
+                    شماره موبایل<i
+                            class="fa fa-angle-down"></i></a></div>
+                <div class="collapse" id="collapseFour" aria-labelledby="headingFour"
+                     data-parent="#accordion">
+                    <div class="card-body change-number">
+                        <h5>شماره موبایل فعلی شما</h5>
+                        <div class="input-group ltr">
+                            <div class="input-group-prepend"><span
+                                    class="input-group-text form-control m-0">+</span></div>
+                            <input class="form-control country-code left_text" type="number"
+                                   placeholder="01"/>
+                            <input class="form-control left_text ltr_placeholder" type="number"
+                                   placeholder="1234567895"/>
+                        </div>
+                        <h5>شماره موبایل جدید شما</h5>
+                        <div class="input-group ltr">
+                            <div class="input-group-prepend"><span
+                                    class="input-group-text form-control m-0">+</span></div>
+                            <input class="form-control country-code left_text" type="number"
+                                   placeholder="01"/>
+                            <input class="form-control left_text ltr_placeholder" type="number"
+                                   placeholder=""/>
+                        </div>
+                        <div class="text-right"><a class="btn btn-outline-primary button-effect btn-sm"
+                                                   href="#">تایید</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header" id="headingFive" role="heading" data-toggle="collapse"
+                     data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive"><a>درخواست
+                    جزئیات حساب
+                    کاربری<i class="fa fa-angle-down"></i></a></div>
+                <div class="collapse" id="collapseFive" aria-labelledby="headingFive"
+                     data-parent="#accordion">
+                    <div class="card-body"><a class="p-0 req-info" id="demo" href="#"
+                                              onclick="document.getElementById(&quot;demo&quot;).innerHTML = &quot;Request sent&quot;">درخواست
+                        جزئیات </a>
+                        <p><b>نکته : </b>یک گزارش درباره حساب خود و تنظیمات تهیه کنید ؛ از این گزارش
+                            میتوانید در دستگاه های
+                            دیگر استفاده کنید</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header" id="headingSix" role="heading" data-toggle="collapse"
+                     data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix"><a>حذف
+                    حساب کاربری<i
+                            class="fa fa-angle-down"></i></a>
+                </div>
+                <div class="collapse" id="collapseSix" aria-labelledby="headingSix"
+                     data-parent="#accordion">
+                    <div class="card-body"><a class="p-0 req-info font-danger" href="#">حذف حساب </a>
+                        <p><b>نکته :</b>با حذف حساب کاربر کلیه اطلاعات حساب کاربری شما و سابقه چت حذف میشوند
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="media">
+        <div class="media-body">
+            <h3>حساب کاربری</h3>
+            <h4>بروزرسانی جزئیات حساب کاربری</h4>
+        </div>
+        <div class="media-right"><a class="icon-btn btn-outline-light btn-sm pull-right next" href="#"> <i
+                data-feather="chevron-right"> </i></a></div>
+    </div>
+</div>
+<div class="setting-block">
+    <div class="block">
+        <div class="media">
+            <div class="media-body">
+                <h3>گفتگو</h3>
+            </div>
+            <div class="media-right"><a class="icon-btn btn-outline-light btn-sm pull-right previous"
+                                        href="#"> <i
+                    data-feather="chevron-left"> </i></a></div>
+        </div>
+        <ul class="help">
+            <li>
+                <h5>پشتیبانگیری از گفتگوها</h5>
+                <ul class="switch-list">
+                    <li>
+                        <input class="js-switch5" type="checkbox" checked=""/>
+                        <h5>پشتیبانگیری خودکار</h5>
+                    </li>
+                    <li>
+                        <input class="js-switch6" type="checkbox"/>
+                        <h5>شامل اسناد</h5>
+                    </li>
+                    <li>
+                        <input class="js-switch7" type="checkbox"/>
+                        <h5>شامل ویدیوها</h5>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <h5>پس زمینه چت</h5>
+                <ul class="wallpaper">
+                    <li><img class="bg-img" src="assets/images/wallpaper/2.jpg" alt="Avatar"/></li>
+                    <li><img class="bg-img" src="assets/images/wallpaper/1.jpg" alt="Avatar"/></li>
+                    <li><img class="bg-img" src="assets/images/wallpaper/3.jpg" alt="Avatar"/></li>
+                    <li><img class="bg-img" src="assets/images/wallpaper/4.jpg" alt="Avatar"/></li>
+                    <li><img class="bg-img" src="assets/images/wallpaper/5.jpg" alt="Avatar"/></li>
+                    <li><img class="bg-img" src="assets/images/wallpaper/6.jpg" alt="Avatar"/></li>
+                    <li><img class="bg-img" src="assets/images/wallpaper/2_dark.jpg" alt="Avatar"/></li>
+                    <li><img class="bg-img" src="assets/images/wallpaper/1_dark.jpg" alt="Avatar"/></li>
+                    <li><img class="bg-img" src="assets/images/wallpaper/3_dark.jpg" alt="Avatar"/></li>
+                    <li><img class="bg-img" src="assets/images/wallpaper/4_dark.jpg" alt="Avatar"/></li>
+                    <li><img class="bg-img" src="assets/images/wallpaper/5_dark.jpg" alt="Avatar"/></li>
+                    <li><img class="bg-img" src="assets/images/wallpaper/6_dark.jpg" alt="Avatar"/></li>
+                </ul>
+            </li>
+            <li>
+                <h5><a href="#">بایگانی همه گفتگوها</a></h5>
+            </li>
+            <li>
+                <h5><a href="#"> پاک کردن همه گغنگوها</a></h5>
+            </li>
+            <li>
+                <h5><a class="font-danger" href="#">حذف همه گفتگوها</a></h5>
+            </li>
+        </ul>
+    </div>
+    <div class="media">
+        <div class="media-body">
+            <h3>چت</h3>
+            <h4>کنترل پشتیبانگیری از گفتگوها</h4>
+        </div>
+        <div class="media-right"><a class="icon-btn btn-outline-light btn-sm pull-right next" href="#"> <i
+                data-feather="chevron-right"> </i></a></div>
+    </div>
+</div>
+<div class="setting-block">
+    <div class="block">
+        <div class="media">
+            <div class="media-body">
+                <h3>ادغام</h3>
+            </div>
+            <div class="media-right"><a class="icon-btn btn-outline-light btn-sm pull-right previous"
+                                        href="#"> <i
+                    data-feather="chevron-left"> </i></a></div>
+        </div>
+        <ul class="integratin">
+            <li>
+                <div class="media">
+                    <div class="media-left"><a class="fb" href="https://www.facebook.com/login"
+                                               target="_blank"><i
+                            class="fa fa-facebook"></i>
+                        <h5>فیسبوک </h5>
+                    </a></div>
+                    <div class="media-right">
+                        <div class="profile"><img class="bg-img" src="assets/images/contact/1.jpg"
+                                                  alt="Avatar"/></div>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="media">
+                    <div class="media-left"><a class="insta"
+                                               href="https://www.instagram.com/accounts/login/?hl=en"
+                                               target="_blank"><i class="fa fa-instagram"></i>
+                        <h5>اینستاگرام</h5>
+                    </a></div>
+                    <div class="media-right">
+                        <div class="profile"><img class="bg-img" src="assets/images/contact/2.jpg"
+                                                  alt="Avatar"/></div>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="media">
+                    <div class="media-left"><a class="twi" href="https://twitter.com/login" target="_blank"><i
+                            class="fa fa-twitter"></i>
+                        <h5>توییتر </h5>
+                    </a></div>
+                    <div class="media-right">
+                        <div class="profile"><img class="bg-img" src="assets/images/contact/3.jpg"
+                                                  alt="Avatar"/></div>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="media">
+                    <div class="media-left"><a class="ggl"
+                                               href="https://accounts.google.com/signin/v2/identifier?service=mail&passive=true&rm=false&continue=https%3A%2F%2Fmail.google.com%2Fmail%2F&ss=1&scc=1&ltmpl=default&ltmplcache=2&emr=1&osid=1&flowName=GlifWebSignIn&flowEntry=ServiceLogin"
+                                               target="_blank"><i class="fa fa-google"></i>
+                        <h5>گوگل </h5>
+                    </a></div>
+                    <div class="media-right">
+                        <div class="profile"><img class="bg-img" src="assets/images/contact/2.jpg"
+                                                  alt="Avatar"/></div>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="media">
+                    <div class="media-left"><a class="slc" href="#"><i class="fa fa-slack"></i>
+                        <h5>اسلک </h5>
+                    </a></div>
+                    <div class="media-right">
+                        <div class="profile"><a href="https://slack.com/get-started#/" target="_blank"><i
+                                data-feather="plus-circle"></i></a></div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="media">
+        <div class="media-body">
+            <h3>ادغام</h3>
+            <h4>همگام سازی سایر حسابهای اجتماعی</h4>
+        </div>
+        <div class="media-right"><a class="icon-btn btn-outline-light btn-sm pull-right next" href="#"> <i
+                data-feather="chevron-right"> </i></a></div>
+    </div>
+</div>
+<div class="setting-block">
+    <div class="block">
+        <div class="media">
+            <div class="media-body">
+                <h3>راهنما</h3>
+            </div>
+            <div class="media-right"><a class="icon-btn btn-outline-light btn-sm pull-right previous"
+                                        href="#"> <i
+                    data-feather="chevron-left"> </i></a></div>
+        </div>
+        <ul class="help">
+            <li>
+                <h5><a href="#">سوالات متداول</a></h5>
+            </li>
+            <li>
+                <h5><a href="#"> تماس با ما</a></h5>
+            </li>
+            <li>
+                <h5><a href="#">شرایط استفاده</a></h5>
+            </li>
+            <li>
+                <h5><a href="#">سیاست حفظ حریم خصوصی</a></h5>
+            </li>
+            <li>
+                <h5><a href="#">1400 - 1401 - کلیه حقوق محفوظ است.</a></h5>
+            </li>
+        </ul>
+    </div>
+    <div class="media">
+        <div class="media-body">
+            <h3>راهنما</h3>
+            <h4>اگر سوالی دارید برای ما ارسال کنید.</h4>
+        </div>
+        <div class="media-right"><a class="icon-btn btn-outline-light btn-sm pull-right next" href="#"> <i
+                data-feather="chevron-right"></i></a></div>
+    </div>
+</div>

@@ -1,0 +1,33 @@
+<div class="theme-title">
+    <div class="media">
+        <div>
+            <h2>مخاطبین</h2>
+            <h4>اینجا پیام رسانی کنید</h4>
+        </div>
+        <div class="media-body text-right"><a class="icon-btn btn-outline-light btn-sm m-r-15 search"
+                                              href="#"> <i
+                data-feather="search"></i></a>
+            <form class="form-inline search-form">
+                <div class="form-group">
+                    <input class="form-control-plaintext" type="search" placeholder="جستجو.."/>
+                    <div class="icon-close close-search"></div>
+                </div>
+            </form>
+            <a class="icon-btn btn-outline-light btn-sm close-panel" href="#"><i data-feather="x"></i></a>
+        </div>
+    </div>
+</div>
+<ul class="chat-main">
+    {% for contact in user.contacts.all %}
+        <li>
+            <div class="chat-box">
+                <div class="profile offline"><img class="bg-img" src="{{ contact.profile_image.url }}"
+                                                  alt="Avatar"/></div>
+                <div class="details">
+                    <h5>{{ contact.fullname }}</h5>
+                    <h6>{{ contact.phone }}</h6>
+                </div>
+            </div>
+        </li>
+    {% endfor %}
+</ul>

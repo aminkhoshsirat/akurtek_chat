@@ -40,7 +40,8 @@ class CustomUserManager(BaseUserManager):
 class CustomUser(PermissionsMixin, AbstractBaseUser):
     phone = models.CharField(max_length=11, unique=True)
     country = models.CharField(max_length=10000, choices=phone_codes)
-    fullname = models.CharField(max_length=150)
+    name = models.CharField(max_length=64)
+    family_name = models.CharField(max_length=64)
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
     is_admin = models.BooleanField(default=False)
@@ -81,8 +82,6 @@ class UserModel(CustomUser):
     find_with_phone = models.CharField(max_length=1000, choices=Mode, default=Mode.all)
     birth_date = jmodels.jDateTimeField(null=True, blank=True)
     report = models.DateTimeField(null=True, blank=True)
-    contacts = models.ManyToManyField('UserModel', related_name='user_contacts')
-    favorite_contacts = models.ManyToManyField('UserModel', related_name='user_favorite_contacts')
 
     def __str__(self):
         return f'{self.phone} - {self.fullname}'
@@ -92,6 +91,30 @@ class UserDeviceModel(models.Model):
     user = models.ForeignKey(UserModel, on_delete=models.CASCADE)
     device_name = models.CharField(max_length=1000)
     ip = models.CharField(max_length=1000)
+    date = jmodels.jDateTimeField(auto_now_add=True)
+
+
+class UserContactsModel(models.Model):
+    user = models.ForeignKey(UserModel, on_delete=models.CASCADE, related_name='user_contacts')
+    to_user = models.ForeignKey(UserModel, on_delete=models.CASCADE, related_name='user_to_contacts')
+    name = models.CharField(max_length=64)
+    family_name = models.CharField(max_length=64)
+
+
+class UserFavoriteModel(models.Model):
+    user = models.ForeignKey(UserModel, on_delete=models.CASCADE, related_name='user_favorites')
+    to_user = models.ForeignKey(UserModel, on_delete=models.CASCADE, related_name='user_to_favorites')
+
+
+class UserGifModel(models.Model):
+    user = models.ForeignKey(UserModel, on_delete=models.CASCADE, related_name='user_gifs')
+    file = models.FileField('user/gif')
+
+
+class UserFilesModel(models.Model):
+    user = models.ForeignKey(UserModel, on_delete=models.CASCADE, related_name='user_files')
+    file = models.FileField(upload_to='user/file')
+    title = models.CharField(max_length=1000)
     date = jmodels.jDateTimeField(auto_now_add=True)
 
 
