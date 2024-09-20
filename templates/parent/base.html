@@ -132,7 +132,87 @@
 {% block content %}
     
 {% endblock %}
-{% block extra_js %}
-{% endblock %}
+<script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+        <script src="{% static 'js/owl.carousel.js' %}"></script>
+        <script src="{% static 'js/popper.min.js' %}"></script>
+        <script src="{% static 'js/tippy-bundle.iife.min.js' %}"></script>
+        <script src="{% static 'js/bootstrap.js' %}"></script>
+        <script src="{% static 'js/switchery.js' %}"></script>
+        <script src="{% static 'js/easytimer.min.js' %}"></script>
+        <script src="{% static 'js/index.js' %}"></script>
+        <script src="{% static 'js/feather-icon/feather.min.js' %}"></script>
+        <script src="{% static 'js/feather-icon/feather-icon.js' %}"></script>
+        <script src="{% static 'js/ckeditor/ckeditor.js' %}"></script>
+        <script src="{% static 'js/ckeditor/styles.js' %}"></script>
+        <script src="{% static 'js/ckeditor/adapters/jquery.js' %}"></script>
+        <script src="{% static 'js/ckeditor/ckeditor.custom.js' %}"></script>
+        <script src="{% static 'js/date-picker/datepicker.js' %}"></script>
+        <script src="{% static 'js/date-picker/datepicker.en.js' %}"></script>
+        <script src="{% static 'js/date-picker/datepicker.custom.js' %}"></script>
+        <script src="{% static 'js/tour/intro.js' %}"></script>
+        <script src="{% static 'js/tour/intro-init.js' %}"></script>
+        <script src="{% static 'js/jquery.magnific-popup.js' %}"></script>
+        <script src="{% static 'js/zoom-gallery.js' %}"></script>
+        <script src="{% static 'js/script.js' %}"></script>
+        <script src="{% static 'js/jquery.md.bootstrap.datetimepicker.js' %}"></script>
+        <script>
+            $(document).ready(function () {
+                $(".datepicker-persian").MdPersianDateTimePicker({
+                    enableTimePicker: false, // set true if you want to enable time picking inputs in picker
+                    targetTextSelector: ".datepicker-persian",// target DOM element to display date-time to user
+                    textFormat: "yyyy-MM-dd",
+                    isGregorian: false,
+                    modalMode: true,// set false to enable popover mode instead modal
+                    englishNumber: false // set true if you want to show english digits
+                });
+
+                /*=====================
+          05. Search js
+          ==========================*/
+                $(".search").on("click", function (e) {
+                    $(this).siblings().toggleClass("open");
+                    $(this).parent().find(".form-inline").toggleClass("open");
+                });
+                $(".close-search").on("click", function (e) {
+                    $(this).parent().parent().removeClass("open");
+                });
+                $(".search-right").on("click", function (e) {
+                    try {
+                        $(this)
+                            .parent()
+                            .parent()
+                            .parent()
+                            .parent()
+                            .parent()
+                            .find(".form-inline")
+                            .toggleClass("open");
+                        $(this)
+                            .parent()
+                            .parent()
+                            .parent()
+                            .parent()
+                            .parent()
+                            .parent()
+                            .find(".form-inline")
+                            .toggleClass("open");
+                        $(this)
+                            .parent()
+                            .parent()
+                            .parent()
+                            .parent()
+                            .parent()
+                            .parent()
+                            .parent()
+                            .find(".form-inline")
+                            .toggleClass("open");
+                    } catch (error) {
+                    }
+                });
+                $(".close-search").on("click", function (e) {
+                    $(this).parent().parent().removeClass("open");
+                });
+
+            });
+        </script>
 </body>
 </html>

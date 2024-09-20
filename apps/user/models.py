@@ -12,18 +12,18 @@ class CustomUserManager(BaseUserManager):
     Custom user model manager where email is the unique identifiers
     for authentication instead of usernames.
     """
-    def create_user(self, phone, fullname, password, **extra_fields):
+    def create_user(self, phone, name, family_name, password, **extra_fields):
         """
         Create and save a user with the given email and password.
         """
         if not phone:
             raise ValueError(_("The phone must be set"))
-        user = self.model(phone=phone, fullname=fullname, **extra_fields)
+        user = self.model(phone=phone, name=name, family_name=family_name, **extra_fields)
         user.set_password(password)
         user.save()
         return user
 
-    def create_superuser(self, phone, fullname, password, **extra_fields):
+    def create_superuser(self, phone, name, family_name, password, **extra_fields):
         """
         Create and save a SuperUser with the given email and password.
         """
@@ -34,21 +34,21 @@ class CustomUserManager(BaseUserManager):
             raise ValueError(_("Superuser must have is_staff=True."))
         if extra_fields.get("is_superuser") is not True:
             raise ValueError(_("Superuser must have is_superuser=True."))
-        return self.create_user(phone, fullname, password, **extra_fields)
+        return self.create_user(phone, name, family_name, password, **extra_fields)
 
 
 class CustomUser(PermissionsMixin, AbstractBaseUser):
     phone = models.CharField(max_length=11, unique=True)
     country = models.CharField(max_length=10000, choices=phone_codes)
     name = models.CharField(max_length=64)
-    family_name = models.CharField(max_length=64)
+    family_name = models.CharField(max_length=64, null=True, blank=True)
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
     is_admin = models.BooleanField(default=False)
     last_login = models.DateTimeField(auto_now=True)
 
     USERNAME_FIELD = "phone"
-    REQUIRED_FIELDS = ['fullname']
+    REQUIRED_FIELDS = ['name', 'family_name']
 
     objects = CustomUserManager()
 
@@ -84,7 +84,7 @@ class UserModel(CustomUser):
     report = models.DateTimeField(null=True, blank=True)
 
     def __str__(self):
-        return f'{self.phone} - {self.fullname}'
+        return f'{self.phone} - {self.name} - {self.family_name}'
 
 
 class UserDeviceModel(models.Model):
