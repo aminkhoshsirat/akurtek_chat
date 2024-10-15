@@ -1,0 +1,62 @@
+Matplotlib Library
+
+1- import matplotlib.pyplot as plt
+
+
+2- plot: this method use to give our x and y
+	ex) x = [1, 2, 8]
+		y = [8, 2, 5]
+		plt.plot(x, y, color='green')
+
+
+3- for show :
+	plt.show()
+
+
+4- if want to add title to table write:
+	plt.title(write title)
+
+
+5- for x and y label write:
+	plt.xlabel(enter x label)
+	plt.ylabel(enter y label)
+
+
+
+6- if we want show data with dot (.)  and dont write khat
+	plt.plot(x, y, 'o', color='green') we can use * replace o
+
+
+7- if we want show khat and * write
+	plt.plot(x,y , marker='*', color='green')
+
+
+8- if want show data column use bar 
+	ex) x = ['red', 'green']
+		y = [5, 6]
+		plt.bar(x, y)
+		plt.show()
+
+
+
+9- if want show Circle use pie
+	plt.pie(y, labels=x)
+	plt.show()
+
+	if want to show percent write
+		plt.pie(y, labels=x, autopct="%1.1f", colors=[color list])
+
+
+10- for show histogram
+	ex) x = np.random.rand(1000, 1)
+		plt.hist(x)
+
+	** if we want change columns write:
+		plt.hist(x, bins=5)
+
+
+11- for show a matrix we use imshow
+	ex) x = np.random.rand(64, 64)
+		plt.imshow(x)
+		plt.colorbar()
+		plt.show()

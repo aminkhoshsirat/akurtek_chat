@@ -1,9 +1,10 @@
+{% load static %}
 <div class="contact-sub-content"><a class="icon-btn btn-outline-primary button-effect mobile-back mb-3"
                                     href="#"><i class="ti-angle-right"></i></a>
     <div class="row">
         <div class="col-sm-5">
             <div class="user-profile">
-                <div class="user-content"><img class="img-fluid bg-icon" src="assets/images/contact/2.jpg"
+                <div class="user-content"><img class="img-fluid bg-icon" src="{% static 'images/contact/2.jpg' %}"
                                                alt="user-img"/>
                     <h3>سعید مظفری</h3>
                     <ul>
@@ -25,7 +26,7 @@
                                 </a></div>
                                 <div class="media-right">
                                     <div class="profile bg-size"><img class="bg-img"
-                                                                      src="assets/images/contact/1.jpg"
+                                                                      src="{% static 'images/contact/1.jpg' %}"
                                                                       alt="Avatar"/></div>
                                 </div>
                             </div>
@@ -39,7 +40,7 @@
                                 </a></div>
                                 <div class="media-right">
                                     <div class="profile bg-size"><img class="bg-img"
-                                                                      src="assets/images/contact/3.jpg"
+                                                                      src="{% static 'images/contact/3.jpg' %}"
                                                                       alt="Avatar"/></div>
                                 </div>
                             </div>
@@ -53,7 +54,7 @@
                                 </a></div>
                                 <div class="media-right">
                                     <div class="profile bg-size"><img class="bg-img"
-                                                                      src="assets/images/contact/2.jpg"
+                                                                      src="{% static 'images/contact/2.jpg' %}"
                                                                       alt="Avatar"/></div>
                                 </div>
                             </div>
@@ -107,3 +108,17 @@
         </div>
     </div>
 </div>
+
+  <script src="{% static 'js/feather-icon/feather.min.js' %}"></script>
+  <script src="{% static 'js/feather-icon/feather-icon.js' %}"></script>
+  <script src="{% static 'js/ckeditor/ckeditor.js' %}"></script>
+  <script src="{% static 'js/ckeditor/styles.js' %}"></script>
+  <script src="{% static 'js/ckeditor/adapters/jquery.js' %}"></script>
+  <script src="{% static 'js/ckeditor/ckeditor.custom.js' %}"></script>
+  <script src="{% static 'js/date-picker/datepicker.js' %}"></script>
+  <script src="{% static 'js/date-picker/datepicker.en.js' %}"></script>
+  <script src="{% static 'js/date-picker/datepicker.custom.js' %}"></script>
+  <script src="{% static 'js/jquery.magnific-popup.js' %}"></script>
+  <script src="{% static 'js/zoom-gallery.js' %}"></script>
+  <script src="{% static 'js/script.js' %}"></script>
+  <script src="{% static 'js/jquery.md.bootstrap.datetimepicker.js' %}"></script>

@@ -1,0 +1,58 @@
+{% load static %}
+<div class="theme-title">
+    <div class="media">
+        <div>
+            <h2>علاقه مندی</h2>
+            <h4>جدیدترین ها</h4>
+        </div>
+        <div class="media-body text-right"><a class="icon-btn btn-outline-light btn-sm m-r-15 search"
+                                              href="#"> <i
+                data-feather="search"></i></a>
+            <form class="form-inline search-form">
+                <div class="form-group">
+                    <input class="form-control-plaintext" type="search" placeholder="جستجو.."/>
+                    <div class="icon-close close-search"></div>
+                </div>
+            </form>
+            <a class="icon-btn btn-outline-light btn-sm m-r-15" href="#" data-toggle="modal"
+               data-target="#addcallmodal"><i data-feather="plus"> </i></a><a
+                    class="icon-btn btn-outline-light btn-sm close-panel" href="#"><i
+                    data-feather="x"></i></a>
+        </div>
+    </div>
+</div>
+<ul class="chat-main">
+    {% for favorite in favorites %}
+        <li>
+            <div class="chat-box">
+                <div class="media">
+                    {% if favorite.to_user.profile_image %}
+                    <div class="profile offline"><img class="bg-img"
+                                                      src="{{ favorite.to_user.profile_image.url }}"
+                                                      alt="Avatar"/></div>
+                    {% endif %}
+                    <div class="details">
+                        <h5>{{ favorite.to_user.name }}{{ favorite.to_user.family_name }}</h5>
+                    </div>
+                    <div class="media-body"><a class="icon-btn btn-outline-primary btn-sm pull-right favourite" href="#"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-star"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg></a></div>
+                </div>
+            </div>
+        </li>
+    {% endfor %}
+</ul>
+
+  <script src="{% static 'js/feather-icon/feather.min.js' %}"></script>
+  <script src="{% static 'js/feather-icon/feather-icon.js' %}"></script>
+  <script src="{% static 'js/ckeditor/ckeditor.js' %}"></script>
+  <script src="{% static 'js/ckeditor/styles.js' %}"></script>
+  <script src="{% static 'js/ckeditor/adapters/jquery.js' %}"></script>
+  <script src="{% static 'js/ckeditor/ckeditor.custom.js' %}"></script>
+  <script src="{% static 'js/date-picker/datepicker.js' %}"></script>
+  <script src="{% static 'js/date-picker/datepicker.en.js' %}"></script>
+  <script src="{% static 'js/date-picker/datepicker.custom.js' %}"></script>
+  <script src="{% static 'js/tour/intro.js' %}"></script>
+  <script src="{% static 'js/tour/intro-init.js' %}"></script>
+  <script src="{% static 'js/jquery.magnific-popup.js' %}"></script>
+  <script src="{% static 'js/zoom-gallery.js' %}"></script>
+  <script src="{% static 'js/script.js' %}"></script>
+  <script src="{% static 'js/jquery.md.bootstrap.datetimepicker.js' %}"></script>

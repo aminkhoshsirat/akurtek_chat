@@ -1,3 +1,4 @@
+{% load static %}
 <div class="theme-title">
     <div class="media">
         <div>
@@ -18,16 +19,33 @@
     </div>
 </div>
 <ul class="chat-main">
-    {% for contact in user.contacts.all %}
+    {% for contact in contacts %}
         <li>
             <div class="chat-box">
-                <div class="profile offline"><img class="bg-img" src="{{ contact.profile_image.url }}"
-                                                  alt="Avatar"/></div>
+                {% if contact.to_user.profile_image %}
+                    <div class="profile offline"><img class="bg-img" src="{{ contact.to_user.profile_image.url }}" 
+                                                      alt="Avatar"/></div>
+                {% endif %}
                 <div class="details">
-                    <h5>{{ contact.fullname }}</h5>
-                    <h6>{{ contact.phone }}</h6>
+                    <h5>{{ contact.name }} {{ contact.family_name }}</h5>
+                    <h6>{{ contact.to_user.phone }}</h6>
                 </div>
             </div>
         </li>
     {% endfor %}
 </ul>
+  <script src="{% static 'js/feather-icon/feather.min.js' %}"></script>
+  <script src="{% static 'js/feather-icon/feather-icon.js' %}"></script>
+  <script src="{% static 'js/ckeditor/ckeditor.js' %}"></script>
+  <script src="{% static 'js/ckeditor/styles.js' %}"></script>
+  <script src="{% static 'js/ckeditor/adapters/jquery.js' %}"></script>
+  <script src="{% static 'js/ckeditor/ckeditor.custom.js' %}"></script>
+  <script src="{% static 'js/date-picker/datepicker.js' %}"></script>
+  <script src="{% static 'js/date-picker/datepicker.en.js' %}"></script>
+  <script src="{% static 'js/date-picker/datepicker.custom.js' %}"></script>
+  <script src="{% static 'js/tour/intro.js' %}"></script>
+  <script src="{% static 'js/tour/intro-init.js' %}"></script>
+  <script src="{% static 'js/jquery.magnific-popup.js' %}"></script>
+  <script src="{% static 'js/zoom-gallery.js' %}"></script>
+  <script src="{% static 'js/script.js' %}"></script>
+  <script src="{% static 'js/jquery.md.bootstrap.datetimepicker.js' %}"></script>

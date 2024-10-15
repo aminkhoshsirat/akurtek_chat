@@ -1,6 +1,6 @@
 from django.shortcuts import render, HttpResponse, redirect
 from django.contrib.auth import logout, login
-from django.views.generic import View, ListView, DetailView
+from django.views.generic import View, ListView, TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from apps.panel.models import SiteDetailModel
 from redis import Redis
@@ -93,6 +93,15 @@ class LogOutView(View):
         return redirect('user:login')
 
 
+class StatusView(LoginRequiredMixin, ListView):
+    template_name = 'user/status.html'
+
+
+class SettingsView(LoginRequiredMixin, View):
+    def get(self, request):
+        return render(request, 'user/settings.html')
+
+
 class ContactsView(LoginRequiredMixin, ListView):
     template_name = 'user/contacts.html'
     paginate_by = 40
@@ -104,13 +113,35 @@ class ContactsView(LoginRequiredMixin, ListView):
 
 
 class UserFavoriteView(LoginRequiredMixin, ListView):
-    template_name = ''
+    template_name = 'user/favorite.html'
     paginate_by = 40
     context_object_name = 'favorites'
 
     def get_queryset(self):
         favorites = UserFavoriteModel.objects.filter(user=self.request.user)
         return favorites
+
+
+class UserDocumentView(ListView):
+    template_name = 'user/document.html'
+    paginate_by = 40
+    context_object_name = 'files'
+
+    def get_queryset(self):
+        files = UserFilesModel.objects.filter(user=self.request.user)
+        return files
+
+
+class UserToDoView(TemplateView):
+    template_name = 'user/to-do.html'
+
+
+class UserNoteView(TemplateView):
+    template_name = 'user/notes.html'
+
+
+class UserReminderList(TemplateView):
+    template_name = 'user/reminder.html'
 
 
 class UserGifView(ListView):

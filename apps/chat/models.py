@@ -9,16 +9,18 @@ class ChatRoomModel(models.Model):
     date = jmodels.jDateTimeField()
     delete_user = models.ForeignKey(UserModel, on_delete=models.DO_NOTHING, null=True, blank=True,
                                     related_name='users_delete_chats')
+    last_message = models.TextField(null=True, blank=True)
 
 
 class ChatModel(models.Model):
     room = models.ForeignKey(ChatRoomModel, on_delete=models.DO_NOTHING, related_name='room_chats')
-    message = models.TextField()
+    message = models.TextField(null=True, blank=True)
+    file = models.FileField(upload_to='pv/files', null=True, blank=True)
     sender = models.ForeignKey(UserModel, on_delete=models.DO_NOTHING, related_name='user_room_sender')
-    delete_user = models.ForeignKey(UserModel, on_delete=models.DO_NOTHING, related_name='user_room_deleter')
+    replay = models.ForeignKey('ChatModel', on_delete=models.DO_NOTHING, null=True, blank=True)
+    delete_user = models.ForeignKey(UserModel, on_delete=models.DO_NOTHING, related_name='user_room_deleter', null=True, blank=True)
     date = jmodels.jDateTimeField(auto_now_add=True)
     edited = models.TextField(null=True, blank=True)
-    last_message = models.TextField(null=True, blank=True)
 
 
 class GroupRoomModel(models.Model):
@@ -28,7 +30,9 @@ class GroupRoomModel(models.Model):
     owner = models.ForeignKey(UserModel, models.DO_NOTHING, related_name='user_groups_owner')
     private = models.BooleanField(default=False)
     link = models.CharField(max_length=10000, unique=True)
+    date = jmodels.jDateTimeField()
     add_member = models.BooleanField(default=True)
+    last_message = models.TextField(null=True, blank=True)
 
 
 class GroupAdminModel(models.Model):
@@ -42,11 +46,12 @@ class GroupAdminModel(models.Model):
 
 class GroupChatModel(models.Model):
     room = models.ForeignKey(GroupRoomModel, on_delete=models.CASCADE, related_name='group_chats')
-    message = models.TextField()
+    message = models.TextField(null=True, blank=True)
+    file = models.FileField(upload_to='group/files', null=True, blank=True)
+    replay = models.ForeignKey('ChatModel', on_delete=models.DO_NOTHING, null=True, blank=True)
     edited = models.TextField(null=True, blank=True)
     sender = models.ForeignKey(UserModel, on_delete=models.DO_NOTHING, related_name='user_group_sender')
     date = jmodels.jDateTimeField(auto_now_add=True)
-    last_message = models.TextField(null=True, blank=True)
 
 
 class ChannelRoomModel(models.Model):
@@ -57,6 +62,8 @@ class ChannelRoomModel(models.Model):
     private = models.BooleanField(default=False)
     link = models.CharField(max_length=10000, unique=True)
     add_member = models.BooleanField(default=True)
+    date = jmodels.jDateTimeField()
+    last_message = models.TextField(null=True, blank=True)
 
 
 class ChannelAdminModel(models.Model):
@@ -70,8 +77,9 @@ class ChannelAdminModel(models.Model):
 
 class ChannelChatModel(models.Model):
     room = models.ForeignKey(GroupRoomModel, on_delete=models.CASCADE, related_name='channel_chats')
-    message = models.TextField()
+    message = models.TextField(null=True, blank=True)
+    file = models.FileField(upload_to='group/files', null=True, blank=True)
+    replay = models.ForeignKey('ChatModel', on_delete=models.DO_NOTHING, null=True, blank=True)
     edited = models.TextField(null=True, blank=True)
     sender = models.ForeignKey(UserModel, on_delete=models.DO_NOTHING, related_name='user_channel_sender')
     date = jmodels.jDateTimeField(auto_now_add=True)
-    last_message = models.TextField(null=True, blank=True)

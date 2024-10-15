@@ -1,46 +1,168 @@
-<div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h2 class="modal-title">
-                لیست کارهای امروز</h2>
-            <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
-                    aria-hidden="true">&times;</span></button>
+{% load static %}
+<div class="todo-main">
+    <div class="theme-title">
+        <div class="media">
+            <div>
+                <h2>کارها(TODO)</h2>
+                <h4> لیست کارها</h4>
+            </div>
+            <div class="media-body media-body text-right"><a
+                    class="icon-btn btn-sm btn-outline-light close-apps"
+                    href="#"><i data-feather="x"></i></a></div>
         </div>
-        <div class="modal-body">
-            <form class="default-form">
-                <div class="todo-task">
-                    <h5>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم</h5>
-                    <div class="todo-main-content">
-                        <div class="form-group">
-                            <input type="checkbox" aria-label="Checkbox for following text input"/>
-                            <input class="w-100" id="user_input123" type="text"
-                                   placeholder="توضیحات خود را اینجا بنویسید "/>
-                        </div>
-                        <div class="drop-picker">
-                            <div class="dropdown currency" tabindex="1">
-                                <div class="select"><span>اختصاص به</span></div>
-                                <input type="hidden" name="currency"/>
-                                <ul class="dropdown-menu">
-                                    <li class="dropdown-divider">
-                                        <div class="fa fa-user text-muted"></div>
-                                        <h5 class="text-muted">اختصاص به</h5>
-                                    </li>
-                                    <li>الهام جعفری</li>
-                                    <li>سعید مظفری</li>
-                                    <li>رویا مرادی</li>
-                                    <li>علی علوی</li>
-                                </ul>
+    </div>
+    <div class="todo-name">
+        <form class="default-form">
+            <select class="custom-scroll" name="support[support_type]">
+                <option>همه گفتگوها</option>
+                <option>وحید مظفری</option>
+                <option>سعید مظفری</option>
+                <option>زهرا مرادی</option>
+                <option>الهام جعفری</option>
+                <option>حمید مظفری</option>
+            </select>
+        </form>
+    </div>
+    <div class="todo-tab theme-tab">
+        <ul class="nav nav-tabs">
+            <li class="nav-item"><a class="nav-link button-effect active show"
+                                    data-toggle="pill"
+                                    href="#todo1">همه</a></li>
+            <li class="nav-item"><a class="nav-link button-effect" data-toggle="pill"
+                                    href="#todo2">کارهای
+                من</a>
+            </li>
+            <li><a class="icon-btn btn-light button-effect btn-sm" data-toggle="modal"
+                   data-target="#todoModal"><i
+                    data-feather="plus"> </i></a></li>
+        </ul>
+        <div class="tab-content custom-scroll"
+             style="max-height:350px;overflow-y:scroll;height:350px">
+            <div class="tab-pane active show" id="todo1">
+                <div class="tab-card text-left">
+                    <div class="todo-task">
+                        <h4>جلسه تصمیم گیری </h4>
+                        <div class="todo-main-content">
+                            <div class="input-text">
+                                <input type="checkbox"
+                                       aria-label="Checkbox for following text input"/>
+                                <input id="user_input12" type="text" name="todo-text"
+                                       placeholder="لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم"/>
                             </div>
-                            <input class="datepicker-persian form-control digits" type="url" data-language="en"
-                                   placeholder="تاریخ انجام"/>
+                            <div class="drop-picker">
+                                <div class="dropdown currency" tabindex="1">
+                                    <div class="select"><span>اختصاص به</span></div>
+                                    <input type="hidden" name="currency"/>
+                                    <ul class="dropdown-menu">
+                                        <li class="dropdown-divider">
+                                            <div class="fa fa-user"></div>
+                                            <h5 class="text-muted">اختصاص به</h5>
+                                        </li>
+                                        <li><a href="#">الهام جعفری</a></li>
+                                        <li><a href="#">سعید مظفری</a></li>
+                                        <li><a href="#">رویا مرادی</a></li>
+                                        <li><a href="#">علی علوی</a></li>
+                                    </ul>
+                                </div>
+                                <input class="datepicker-persian form-control digits" type="url"
+                                       data-language="fa"
+                                       placeholder="تاریخ انجام"/>
+                            </div>
+                        </div>
+                        <div class="todo-list">
+                            <div class="element" id="div_3"><span class="add add-to-do">افزودن کار جدید</span>
+                            </div>
+                        </div>
+                        <div class="todo-main-content">
+                            <div class="input-text">
+                                <input type="checkbox"
+                                       aria-label="Checkbox for following text input"/>
+                                <input id="user_input13" type="text" name="todo-text"
+                                       placeholder="لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم"/>
+                            </div>
+                            <div class="drop-picker">
+                                <div class="dropdown currency" tabindex="1">
+                                    <div class="select"><span>اختصاص به</span></div>
+                                    <input type="hidden" name="currency"/>
+                                    <ul class="dropdown-menu">
+                                        <li class="dropdown-divider">
+                                            <div class="fa fa-user"></div>
+                                            <h5 class="text-muted">اختصاص به</h5>
+                                        </li>
+                                        <li><a href="#">الهام جعفری</a></li>
+                                        <li><a href="#">سعید مظفری</a></li>
+                                        <li><a href="#">رویا مرادی</a></li>
+                                        <li><a href="#">علی علوی</a></li>
+                                    </ul>
+                                </div>
+                                <input class="datepicker-persian form-control digits" type="url"
+                                       data-language="en"
+                                       placeholder="تاریخ انجام"/>
+                            </div>
+                        </div>
+                        <div class="todo-list">
+                            <div class="element" id="div_2"><span
+                                    class="add add-to-do">افزودن کار</span></div>
+                        </div>
+                        <div class="todo-main-content">
+                            <div class="input-text">
+                                <input type="checkbox"
+                                       aria-label="Checkbox for following text input"/>
+                                <input id="user_input14" type="text" name="todo-text"
+                                       placeholder=" لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم"/>
+                            </div>
+                            <div class="drop-picker">
+                                <div class="dropdown currency" tabindex="1">
+                                    <div class="select"><span>اختصاص به</span></div>
+                                    <input type="hidden" name="currency"/>
+                                    <ul class="dropdown-menu">
+                                        <li class="dropdown-divider">
+                                            <div class="fa fa-user"></div>
+                                            <h5 class="text-muted">اختصاص به</h5>
+                                        </li>
+                                        <li><a href="#">الهام جعفری</a></li>
+                                        <li><a href="#">سعید مظفری</a></li>
+                                        <li><a href="#">رویا مرادی</a></li>
+                                        <li><a href="#">علی علوی</a></li>
+                                    </ul>
+                                </div>
+                                <input class="datepicker-persian form-control digits" type="url"
+                                       data-language="en"
+                                       placeholder="تاریخ انجام"/>
+                            </div>
+                        </div>
+                        <div class="todo-list">
+                            <div class="element" id="div_1"><span
+                                    class="add add-to-do">افزودن کار</span></div>
                         </div>
                     </div>
                 </div>
-            </form>
-        </div>
-        <div class="modal-footer">
-            <button class="btn btn-danger button-effect btn-sm" type="button">ذخیره</button>
-            <button class="btn btn-primary button-effect btn-sm" type="button" data-dismiss="modal">انصراف</button>
+            </div>
+            <div class="tab-pane fade" id="todo2">
+                <div class="converstaion-docs tab-card"><i class="fa fa-sticky-note-o"></i>
+                    <h5 class="mb-3">لیست کارها</h5><a class="btn btn-primary btn-sm"
+                                                       data-toggle="modal"
+                                                       data-target="#createtodoModal">افزودن یک
+                        کار</a>
+                </div>
+            </div>
         </div>
     </div>
 </div>
+
+
+  <script src="{% static 'js/feather-icon/feather.min.js' %}"></script>
+  <script src="{% static 'js/feather-icon/feather-icon.js' %}"></script>
+  <script src="{% static 'js/ckeditor/ckeditor.js' %}"></script>
+  <script src="{% static 'js/ckeditor/styles.js' %}"></script>
+  <script src="{% static 'js/ckeditor/adapters/jquery.js' %}"></script>
+  <script src="{% static 'js/ckeditor/ckeditor.custom.js' %}"></script>
+  <script src="{% static 'js/date-picker/datepicker.js' %}"></script>
+  <script src="{% static 'js/date-picker/datepicker.en.js' %}"></script>
+  <script src="{% static 'js/date-picker/datepicker.custom.js' %}"></script>
+  <script src="{% static 'js/tour/intro.js' %}"></script>
+  <script src="{% static 'js/tour/intro-init.js' %}"></script>
+  <script src="{% static 'js/jquery.magnific-popup.js' %}"></script>
+  <script src="{% static 'js/zoom-gallery.js' %}"></script>
+  <script src="{% static 'js/script.js' %}"></script>
+  <script src="{% static 'js/jquery.md.bootstrap.datetimepicker.js' %}"></script>

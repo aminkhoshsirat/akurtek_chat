@@ -21,4 +21,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('apps.chat.urls', namespace='chat'), name='chat'),
     path('user/', include('apps.user.urls', namespace='user'), name='user'),
+    path('notification/', include('apps.notification.urls', namespace='notification'), name='notification'),
+    path('call/', include('apps.call.urls', namespace='call'), name='call'),
 ]

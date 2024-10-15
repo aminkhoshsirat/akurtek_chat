@@ -1,3 +1,4 @@
+{% load static %}
 <div class="notes-main">
     <div class="theme-title">
         <div class="media">
@@ -26,7 +27,7 @@
     </form>
     <div class="notes-list custom-scroll" style="max-height:350px;overflow-y:scroll;height:350px">
         <h6 class="mb-2 text-muted">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم</h6>
-        <div class="media"><img class="img-fluid mr-3" src="assets/images/file_icons/5.png"
+        <div class="media"><img class="img-fluid mr-3" src="{% static 'images/file_icons/5.png' %}"
                                 alt="media-img"/>
             <div class="media-body">
                 <h5 class="mt-0">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم</h5>
@@ -37,3 +38,19 @@
         <div class="forward-main"><a class="line fa fa-mail-forward" href="#">فروارد </a></div>
     </div>
 </div>
+
+  <script src="{% static 'js/feather-icon/feather.min.js' %}"></script>
+  <script src="{% static 'js/feather-icon/feather-icon.js' %}"></script>
+  <script src="{% static 'js/ckeditor/ckeditor.js' %}"></script>
+  <script src="{% static 'js/ckeditor/styles.js' %}"></script>
+  <script src="{% static 'js/ckeditor/adapters/jquery.js' %}"></script>
+  <script src="{% static 'js/ckeditor/ckeditor.custom.js' %}"></script>
+  <script src="{% static 'js/date-picker/datepicker.js' %}"></script>
+  <script src="{% static 'js/date-picker/datepicker.en.js' %}"></script>
+  <script src="{% static 'js/date-picker/datepicker.custom.js' %}"></script>
+  <script src="{% static 'js/tour/intro.js' %}"></script>
+  <script src="{% static 'js/tour/intro-init.js' %}"></script>
+  <script src="{% static 'js/jquery.magnific-popup.js' %}"></script>
+  <script src="{% static 'js/zoom-gallery.js' %}"></script>
+  <script src="{% static 'js/script.js' %}"></script>
+  <script src="{% static 'js/jquery.md.bootstrap.datetimepicker.js' %}"></script>

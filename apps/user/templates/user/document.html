@@ -1,0 +1,59 @@
+{% load static %}
+<div class="theme-title">
+    <div class="media">
+        <div>
+            <h2>اسناد</h2>
+            <h4>لیست اسناد و فایلها</h4>
+        </div>
+        <div class="media-body text-right"><a class="icon-btn btn-outline-light btn-sm m-r-15 search"
+                                              href="#"> <i
+                data-feather="search"></i></a>
+            <form class="form-inline search-form">
+                <div class="form-group">
+                    <input class="form-control-plaintext" type="search" placeholder="جستجو.."/>
+                    <div class="icon-close close-search"></div>
+                </div>
+            </form>
+            <a class="icon-btn btn-outline-light btn-sm close-panel" href="#"><i
+                    data-feather="x"></i></a>
+        </div>
+    </div>
+</div>
+<ul class="chat-main">
+
+    {% for file in files %}
+        <li>
+            <div class="chat-box">
+                <div class="media">
+                    <div class="profile"><a class="icon-btn btn-outline-danger btn-xl pull-right rouded15"
+                                            href="#"><i
+                            class="fa fa-file-code-o"></i></a></div>
+                    <div class="details">
+                        <h5>{{ file.title }}</h5>
+                        <h6>{{ file.date | date:"Y-m-d" }}</h6>
+                        <h6>{{ file.date | date:"H:m" }}</h6>
+                    </div>
+                    <div class="media-body"><a class="icon-btn btn-outline-light btn-sm pull-right"
+                                               href="{{ file.file.url }}" target="_blank"><i
+                            data-feather="download"></i></a></div>
+                </div>
+            </div>
+        </li>
+    {% endfor %}
+</ul>
+
+  <script src="{% static 'js/feather-icon/feather.min.js' %}"></script>
+  <script src="{% static 'js/feather-icon/feather-icon.js' %}"></script>
+  <script src="{% static 'js/ckeditor/ckeditor.js' %}"></script>
+  <script src="{% static 'js/ckeditor/styles.js' %}"></script>
+  <script src="{% static 'js/ckeditor/adapters/jquery.js' %}"></script>
+  <script src="{% static 'js/ckeditor/ckeditor.custom.js' %}"></script>
+  <script src="{% static 'js/date-picker/datepicker.js' %}"></script>
+  <script src="{% static 'js/date-picker/datepicker.en.js' %}"></script>
+  <script src="{% static 'js/date-picker/datepicker.custom.js' %}"></script>
+  <script src="{% static 'js/tour/intro.js' %}"></script>
+  <script src="{% static 'js/tour/intro-init.js' %}"></script>
+  <script src="{% static 'js/jquery.magnific-popup.js' %}"></script>
+  <script src="{% static 'js/zoom-gallery.js' %}"></script>
+  <script src="{% static 'js/script.js' %}"></script>
+  <script src="{% static 'js/jquery.md.bootstrap.datetimepicker.js' %}"></script>

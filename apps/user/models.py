@@ -82,6 +82,8 @@ class UserModel(CustomUser):
     find_with_phone = models.CharField(max_length=1000, choices=Mode, default=Mode.all)
     birth_date = jmodels.jDateTimeField(null=True, blank=True)
     report = models.DateTimeField(null=True, blank=True)
+    online = models.BooleanField(default=False)
+    seen_time = jmodels.jDateTimeField(null=True, blank=True)
 
     def __str__(self):
         return f'{self.phone} - {self.name} - {self.family_name}'

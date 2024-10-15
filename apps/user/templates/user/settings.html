@@ -1,3 +1,4 @@
+{% load static %}
 <div class="theme-title">
     <div class="media">
         <div>
@@ -10,7 +11,7 @@
     </div>
     <div class="profile-box">
         <div class="media">
-            <div class="profile"><img class="bg-img" src="assets/images/contact/2.jpg" alt="Avatar"/></div>
+            <div class="profile"><img class="bg-img" src="{% static 'images/contact/2.jpg' %}" alt="Avatar"/></div>
             <div class="details">
                 <h5>{{ user.fullname }}</h5>
                 <h6>{{ user.birth_date }}</h6>
@@ -244,18 +245,18 @@
             <li>
                 <h5>پس زمینه چت</h5>
                 <ul class="wallpaper">
-                    <li><img class="bg-img" src="assets/images/wallpaper/2.jpg" alt="Avatar"/></li>
-                    <li><img class="bg-img" src="assets/images/wallpaper/1.jpg" alt="Avatar"/></li>
-                    <li><img class="bg-img" src="assets/images/wallpaper/3.jpg" alt="Avatar"/></li>
-                    <li><img class="bg-img" src="assets/images/wallpaper/4.jpg" alt="Avatar"/></li>
-                    <li><img class="bg-img" src="assets/images/wallpaper/5.jpg" alt="Avatar"/></li>
-                    <li><img class="bg-img" src="assets/images/wallpaper/6.jpg" alt="Avatar"/></li>
-                    <li><img class="bg-img" src="assets/images/wallpaper/2_dark.jpg" alt="Avatar"/></li>
-                    <li><img class="bg-img" src="assets/images/wallpaper/1_dark.jpg" alt="Avatar"/></li>
-                    <li><img class="bg-img" src="assets/images/wallpaper/3_dark.jpg" alt="Avatar"/></li>
-                    <li><img class="bg-img" src="assets/images/wallpaper/4_dark.jpg" alt="Avatar"/></li>
-                    <li><img class="bg-img" src="assets/images/wallpaper/5_dark.jpg" alt="Avatar"/></li>
-                    <li><img class="bg-img" src="assets/images/wallpaper/6_dark.jpg" alt="Avatar"/></li>
+                    <li><img class="bg-img" src="{% static 'images/wallpaper/2.jpg' %}" alt="Avatar"/></li>
+                    <li><img class="bg-img" src="{% static 'images/wallpaper/1.jpg' %}" alt="Avatar"/></li>
+                    <li><img class="bg-img" src="{% static 'images/wallpaper/3.jpg' %}" alt="Avatar"/></li>
+                    <li><img class="bg-img" src="{% static 'images/wallpaper/4.jpg' %}" alt="Avatar"/></li>
+                    <li><img class="bg-img" src="{% static 'images/wallpaper/5.jpg' %}" alt="Avatar"/></li>
+                    <li><img class="bg-img" src="{% static 'images/wallpaper/6.jpg' %}" alt="Avatar"/></li>
+                    <li><img class="bg-img" src="{% static 'images/wallpaper/2_dark.jpg' %}" alt="Avatar"/></li>
+                    <li><img class="bg-img" src="{% static 'images/wallpaper/1_dark.jpg' %}" alt="Avatar"/></li>
+                    <li><img class="bg-img" src="{% static 'images/wallpaper/3_dark.jpg' %}" alt="Avatar"/></li>
+                    <li><img class="bg-img" src="{% static 'images/wallpaper/4_dark.jpg' %}" alt="Avatar"/></li>
+                    <li><img class="bg-img" src="{% static 'images/wallpaper/5_dark.jpg' %}" alt="Avatar"/></li>
+                    <li><img class="bg-img" src="{% static 'images/wallpaper/6_dark.jpg' %}" alt="Avatar"/></li>
                 </ul>
             </li>
             <li>
@@ -297,7 +298,7 @@
                         <h5>فیسبوک </h5>
                     </a></div>
                     <div class="media-right">
-                        <div class="profile"><img class="bg-img" src="assets/images/contact/1.jpg"
+                        <div class="profile"><img class="bg-img" src="{% static 'images/contact/1.jpg' %}"
                                                   alt="Avatar"/></div>
                     </div>
                 </div>
@@ -310,7 +311,7 @@
                         <h5>اینستاگرام</h5>
                     </a></div>
                     <div class="media-right">
-                        <div class="profile"><img class="bg-img" src="assets/images/contact/2.jpg"
+                        <div class="profile"><img class="bg-img" src="{% static 'images/contact/2.jpg' %}"
                                                   alt="Avatar"/></div>
                     </div>
                 </div>
@@ -322,7 +323,7 @@
                         <h5>توییتر </h5>
                     </a></div>
                     <div class="media-right">
-                        <div class="profile"><img class="bg-img" src="assets/images/contact/3.jpg"
+                        <div class="profile"><img class="bg-img" src="{% static 'images/contact/3.jpg' %}"
                                                   alt="Avatar"/></div>
                     </div>
                 </div>
@@ -335,7 +336,7 @@
                         <h5>گوگل </h5>
                     </a></div>
                     <div class="media-right">
-                        <div class="profile"><img class="bg-img" src="assets/images/contact/2.jpg"
+                        <div class="profile"><img class="bg-img" src="{% static 'images/contact/2.jpg' %}"
                                                   alt="Avatar"/></div>
                     </div>
                 </div>
@@ -399,3 +400,18 @@
                 data-feather="chevron-right"></i></a></div>
     </div>
 </div>
+  <script src="{% static 'js/feather-icon/feather.min.js' %}"></script>
+  <script src="{% static 'js/feather-icon/feather-icon.js' %}"></script>
+  <script src="{% static 'js/ckeditor/ckeditor.js' %}"></script>
+  <script src="{% static 'js/ckeditor/styles.js' %}"></script>
+  <script src="{% static 'js/ckeditor/adapters/jquery.js' %}"></script>
+  <script src="{% static 'js/ckeditor/ckeditor.custom.js' %}"></script>
+  <script src="{% static 'js/date-picker/datepicker.js' %}"></script>
+  <script src="{% static 'js/date-picker/datepicker.en.js' %}"></script>
+  <script src="{% static 'js/date-picker/datepicker.custom.js' %}"></script>
+  <script src="{% static 'js/tour/intro.js' %}"></script>
+  <script src="{% static 'js/tour/intro-init.js' %}"></script>
+  <script src="{% static 'js/jquery.magnific-popup.js' %}"></script>
+  <script src="{% static 'js/zoom-gallery.js' %}"></script>
+  <script src="{% static 'js/script.js' %}"></script>
+  <script src="{% static 'js/jquery.md.bootstrap.datetimepicker.js' %}"></script>

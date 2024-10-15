@@ -13,7 +13,7 @@
                                                                             alt="logo"/></a></div>
             <div class="sidebar-main">
                 <ul class="sidebar-top">
-                    <li><a class="button-effect" href="status" data-tippy-content="وضعیت"
+                    <li onclick="statusList()"><a class="button-effect" href="status" data-tippy-content="وضعیت"
                            data-intro="وضعیت ها را اینجا چک کنید">
                         <div class="user-popup status one">
                             {% if user.profile_image %}
@@ -24,19 +24,19 @@
                             {% endif %}
                         </div>
                     </a></li>
-                    <li><a class="icon-btn btn-light button-effect" href="favourite" data-tippy-content="علاقه مندی"><i
+                    <li onclick="favoriteList()"><a class="icon-btn btn-light button-effect" href="favourite" data-tippy-content="علاقه مندی"><i
                             class="fa fa-star"> </i></a></li>
-                    <li><a class="icon-btn btn-light button-effect" href="document" data-tippy-content="اسناد"> <i
+                    <li onclick="documentList()"><a class="icon-btn btn-light button-effect" href="document" data-tippy-content="اسناد"> <i
                             class="fa fa-file-text"> </i></a></li>
-                    <li><a class="icon-btn btn-light button-effect" href="contact-list" data-tippy-content="مخاطبین"> <i
+                    <li onclick="contactsList()"><a class="icon-btn btn-light button-effect" href="contact-list" data-tippy-content="مخاطبین"> <i
                             class="fa fa-users"> </i></a></li>
-                    <li>
+                    <li onclick="notificationList()">
                         <div class="dot-btn dot-danger grow"><a class="icon-btn btn-light button-effect"
                                                                 href="notification"
                                                                 data-tippy-content="اعلان ها"> <i
                                 class="fa fa-bell"></i></a></div>
                     </li>
-                    <li><a class="icon-btn btn-light button-effect" href="settings" data-tippy-content="تنظیمات"
+                    <li onclick="settingList()"><a class="icon-btn btn-light button-effect" href="settings" data-tippy-content="تنظیمات"
                            data-intro="میتوانید تنظیمات را از اینجا بروزرسانی ککنید."> <i class="fa fa-cog"></i></a>
                     </li>
                 </ul>
@@ -72,7 +72,7 @@
                                     <div class="recent-box">
                                         <div class="dot-btn dot-danger grow"></div>
                                         <div class="recent-profile"><img class="bg-img"
-                                                                         src="{{ room.user2.profile_image.url }}"
+                                                                         src=""
                                                                          alt="Avatar"/>
                                             <h6>{{ room.user2.fullname }}</h6>
                                         </div>
@@ -169,25 +169,85 @@
                                         <div class="tab-pane fade show active" id="direct" role="tabpanel"
                                              aria-labelledby="direct-tab">
                                             <ul class="chat-main">
+                                                {% for room in rooms_list %}
+                                                    {% if room.user1 %}
+                                                        {% if room.user1 == user %}
+                                                            <li onclick="goChat({{ room.id }})" class="active" data-to="chating">
+                                                                <div class="chat-box">
+                                                                    <div class="profile online">
+                                                                        <img class="bg-img"
+                                                                             src=""
+                                                                             alt="Avatar"/></div>
+                                                                    <div class="details">
 
 
-                                                <li class="active" data-to="chating">
-                                                    <div class="chat-box">
-                                                        <div class="profile online"><img class="bg-img"
-                                                                                         src="assets/images/contact/2.jpg"
-                                                                                         alt="Avatar"/></div>
-                                                        <div class="details">
-                                                            <h5>سعید مظفری</h5>
-                                                            <h6>در حال نوشتن پیام ................</h6>
+                                                                        <h5>{{ room.user2 }}</h5>
+                                                                        <h6>در حال نوشتن پیام ................</h6>
+                                                                    </div>
+                                                                    <div class="date-status"><i class="ti-pin2"></i>
+                                                                        <h6>1401/01/02</h6>
+                                                                        <div class="badge badge-primary sm">8</div>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                        {% else %}
+                                                            <li onclick="goChat({{ room.id }})" class="active" data-to="chating">
+                                                                <div class="chat-box">
+                                                                    <div class="profile online"><img class="bg-img"
+                                                                                                     src="assets/images/contact/2.jpg"
+                                                                                                     alt="Avatar"/>
+                                                                    </div>
+                                                                    <div class="details">
+
+
+                                                                        <h5>{{ room.user2 }}</h5>
+                                                                        <h6>در حال نوشتن پیام ................</h6>
+                                                                    </div>
+                                                                    <div class="date-status"><i class="ti-pin2"></i>
+                                                                        <h6>1401/01/02</h6>
+                                                                        <div class="badge badge-primary sm">8</div>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                        {% endif %}
+                                                    {% else %}
+                                                        <li onclick="goChat({{ room.id }})" class="active" data-to="chating">
+                                                            <div class="chat-box">
+                                                                <div class="profile online"><img class="bg-img"
+                                                                                                 src="assets/images/contact/2.jpg"
+                                                                                                 alt="Avatar"/></div>
+                                                                <div class="details">
+
+
+                                                                    <h5>{{ room.user2 }}</h5>
+                                                                    <h6>در حال نوشتن پیام ................</h6>
+                                                                </div>
+                                                                <div class="date-status"><i class="ti-pin2"></i>
+                                                                    <h6>1401/01/02</h6>
+                                                                    <div class="badge badge-primary sm">8</div>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+
+                                                    {% endif %}
+                                                    <li onclick="goChat({{ room.id }})" class="active" data-to="chating">
+                                                        <div class="chat-box">
+                                                            <div class="profile online"><img class="bg-img"
+                                                                                             src="assets/images/contact/2.jpg"
+                                                                                             alt="Avatar"/></div>
+                                                            <div class="details">
+
+
+                                                                <h5>{{ room.user2 }}</h5>
+                                                                <h6>در حال نوشتن پیام ................</h6>
+                                                            </div>
+                                                            <div class="date-status"><i class="ti-pin2"></i>
+                                                                <h6>1401/01/02</h6>
+                                                                <div class="badge badge-primary sm">8</div>
+                                                            </div>
                                                         </div>
-                                                        <div class="date-status"><i class="ti-pin2"></i>
-                                                            <h6>1401/01/02</h6>
-                                                            <div class="badge badge-primary sm">8</div>
-                                                        </div>
-                                                    </div>
-                                                </li>
-
-
+                                                    </li>
+                                                {% endfor %}
                                             </ul>
                                         </div>
                                         <div class="tab-pane fade" id="group" role="tabpanel"
@@ -428,113 +488,15 @@
                     </div>
                 </div>
             </div>
-            <div class="fevorite-tab dynemic-sidebar" id="favourite">
-                <div class="theme-title">
-                    <div class="media">
-                        <div>
-                            <h2>علاقه مندی</h2>
-                            <h4>جدیدترین ها</h4>
-                        </div>
-                        <div class="media-body text-right"><a class="icon-btn btn-outline-light btn-sm m-r-15 search"
-                                                              href="#"> <i
-                                data-feather="search"></i></a>
-                            <form class="form-inline search-form">
-                                <div class="form-group">
-                                    <input class="form-control-plaintext" type="search" placeholder="جستجو.."/>
-                                    <div class="icon-close close-search"></div>
-                                </div>
-                            </form>
-                            <a class="icon-btn btn-outline-light btn-sm m-r-15" href="#" data-toggle="modal"
-                               data-target="#addcallmodal"><i data-feather="plus"> </i></a><a
-                                    class="icon-btn btn-outline-light btn-sm close-panel" href="#"><i
-                                    data-feather="x"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <ul class="chat-main">
-                    {% for favorite in user.favorite_contacts.all %}
-                        <li>
-                            <div class="chat-box">
-                                <div class="media">
-                                    <div class="profile offline"><img class="bg-img"
-                                                                      src="{{ favorite.contact.profile_image.url }}"
-                                                                      alt="Avatar"/></div>
-                                    <div class="details">
-                                        <h5>{{ favorite.contact.fullname }}</h5>
-                                    </div>
-                                    <div class="media-body"><a
-                                            class="icon-btn btn-outline-primary btn-sm pull-right favourite"
-                                            href="#"> <i
-                                            data-feather="star"> </i></a></div>
-                                </div>
-                            </div>
-                        </li>
-                    {% endfor %}
-                </ul>
-            </div>
-            <div class="document-tab dynemic-sidebar" id="document">
-                <div class="theme-title">
-                    <div class="media">
-                        <div>
-                            <h2>اسناد</h2>
-                            <h4>لیست اسناد و فایلها</h4>
-                        </div>
-                        <div class="media-body text-right"><a class="icon-btn btn-outline-light btn-sm m-r-15 search"
-                                                              href="#"> <i
-                                data-feather="search"></i></a>
-                            <form class="form-inline search-form">
-                                <div class="form-group">
-                                    <input class="form-control-plaintext" type="search" placeholder="جستجو.."/>
-                                    <div class="icon-close close-search"></div>
-                                </div>
-                            </form>
-                            <a class="icon-btn btn-outline-light btn-sm close-panel" href="#"><i
-                                    data-feather="x"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <ul class="chat-main">
-
-
-                    <li>
-                        <div class="chat-box">
-                            <div class="media">
-                                <div class="profile"><a class="icon-btn btn-outline-danger btn-xl pull-right rouded15"
-                                                        href="#"><i
-                                        class="fa fa-file-code-o"></i></a></div>
-                                <div class="details">
-                                    <h5>messenger.html</h5>
-                                    <h6>2 فروردین 1401</h6>
-                                </div>
-                                <div class="media-body"><a class="icon-btn btn-outline-light btn-sm pull-right"
-                                                           href="assets/doc/messenger.html" target="_blank"><i
-                                        data-feather="download"></i></a></div>
-                            </div>
-                        </div>
-                    </li>
-
-
-                </ul>
-            </div>
-            <div class="contact-list-tab dynemic-sidebar custom-scroll" id="contact-list">
-
-
-            </div>
-            <div class="notification-tab dynemic-sidebar custom-scroll" id="notification">
-
-
-            </div>
-            <div class="settings-tab dynemic-sidebar custom-scroll" id="settings">
-
-
-            </div>
-            <div class="status-tab custom-scroll dynemic-sidebar" id="status">
-
-
-            </div>
+            <div class="fevorite-tab dynemic-sidebar" id="favourite"></div>
+            <div class="document-tab dynemic-sidebar" id="document"></div>
+            <div class="contact-list-tab dynemic-sidebar custom-scroll" id="contact-list"></div>
+            <div class="notification-tab dynemic-sidebar custom-scroll" id="notification"></div>
+            <div class="settings-tab dynemic-sidebar custom-scroll" id="settings"></div>
+            <div class="status-tab custom-scroll dynemic-sidebar" id="status"></div>
         </aside>
         <div class="chitchat-main small-sidebar" id="content">
-            <div class="chat-content tabto active">
+            <div class="chat-content tabto active" id="chat-view">
 
 
             </div>
@@ -861,170 +823,10 @@
         <aside class="app-sidebar active">
             <div class="apps">
                 <ul class="apps-ul">
-                    <li id="todo">
-                        <div class="todo-main">
-                            <div class="theme-title">
-                                <div class="media">
-                                    <div>
-                                        <h2>کارها(TODO)</h2>
-                                        <h4> لیست کارها</h4>
-                                    </div>
-                                    <div class="media-body media-body text-right"><a
-                                            class="icon-btn btn-sm btn-outline-light close-apps"
-                                            href="#"><i data-feather="x"></i></a></div>
-                                </div>
-                            </div>
-                            <div class="todo-name">
-                                <form class="default-form">
-                                    <select class="custom-scroll" name="support[support_type]">
-                                        <option>همه گفتگوها</option>
-                                        <option>وحید مظفری</option>
-                                        <option>سعید مظفری</option>
-                                        <option>زهرا مرادی</option>
-                                        <option>الهام جعفری</option>
-                                        <option>حمید مظفری</option>
-                                    </select>
-                                </form>
-                            </div>
-                            <div class="todo-tab theme-tab">
-                                <ul class="nav nav-tabs">
-                                    <li class="nav-item"><a class="nav-link button-effect active show"
-                                                            data-toggle="pill"
-                                                            href="#todo1">همه</a></li>
-                                    <li class="nav-item"><a class="nav-link button-effect" data-toggle="pill"
-                                                            href="#todo2">کارهای
-                                        من</a>
-                                    </li>
-                                    <li><a class="icon-btn btn-light button-effect btn-sm" data-toggle="modal"
-                                           data-target="#todoModal"><i
-                                            data-feather="plus"> </i></a></li>
-                                </ul>
-                                <div class="tab-content custom-scroll"
-                                     style="max-height:350px;overflow-y:scroll;height:350px">
-                                    <div class="tab-pane active show" id="todo1">
-                                        <div class="tab-card text-left">
-                                            <div class="todo-task">
-                                                <h4>جلسه تصمیم گیری </h4>
-                                                <div class="todo-main-content">
-                                                    <div class="input-text">
-                                                        <input type="checkbox"
-                                                               aria-label="Checkbox for following text input"/>
-                                                        <input id="user_input12" type="text" name="todo-text"
-                                                               placeholder="لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم"/>
-                                                    </div>
-                                                    <div class="drop-picker">
-                                                        <div class="dropdown currency" tabindex="1">
-                                                            <div class="select"><span>اختصاص به</span></div>
-                                                            <input type="hidden" name="currency"/>
-                                                            <ul class="dropdown-menu">
-                                                                <li class="dropdown-divider">
-                                                                    <div class="fa fa-user"></div>
-                                                                    <h5 class="text-muted">اختصاص به</h5>
-                                                                </li>
-                                                                <li><a href="#">الهام جعفری</a></li>
-                                                                <li><a href="#">سعید مظفری</a></li>
-                                                                <li><a href="#">رویا مرادی</a></li>
-                                                                <li><a href="#">علی علوی</a></li>
-                                                            </ul>
-                                                        </div>
-                                                        <input class="datepicker-persian form-control digits" type="url"
-                                                               data-language="fa"
-                                                               placeholder="تاریخ انجام"/>
-                                                    </div>
-                                                </div>
-                                                <div class="todo-list">
-                                                    <div class="element" id="div_3"><span class="add add-to-do">افزودن کار جدید</span>
-                                                    </div>
-                                                </div>
-                                                <div class="todo-main-content">
-                                                    <div class="input-text">
-                                                        <input type="checkbox"
-                                                               aria-label="Checkbox for following text input"/>
-                                                        <input id="user_input13" type="text" name="todo-text"
-                                                               placeholder="لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم"/>
-                                                    </div>
-                                                    <div class="drop-picker">
-                                                        <div class="dropdown currency" tabindex="1">
-                                                            <div class="select"><span>اختصاص به</span></div>
-                                                            <input type="hidden" name="currency"/>
-                                                            <ul class="dropdown-menu">
-                                                                <li class="dropdown-divider">
-                                                                    <div class="fa fa-user"></div>
-                                                                    <h5 class="text-muted">اختصاص به</h5>
-                                                                </li>
-                                                                <li><a href="#">الهام جعفری</a></li>
-                                                                <li><a href="#">سعید مظفری</a></li>
-                                                                <li><a href="#">رویا مرادی</a></li>
-                                                                <li><a href="#">علی علوی</a></li>
-                                                            </ul>
-                                                        </div>
-                                                        <input class="datepicker-persian form-control digits" type="url"
-                                                               data-language="en"
-                                                               placeholder="تاریخ انجام"/>
-                                                    </div>
-                                                </div>
-                                                <div class="todo-list">
-                                                    <div class="element" id="div_2"><span
-                                                            class="add add-to-do">افزودن کار</span></div>
-                                                </div>
-                                                <div class="todo-main-content">
-                                                    <div class="input-text">
-                                                        <input type="checkbox"
-                                                               aria-label="Checkbox for following text input"/>
-                                                        <input id="user_input14" type="text" name="todo-text"
-                                                               placeholder=" لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم"/>
-                                                    </div>
-                                                    <div class="drop-picker">
-                                                        <div class="dropdown currency" tabindex="1">
-                                                            <div class="select"><span>اختصاص به</span></div>
-                                                            <input type="hidden" name="currency"/>
-                                                            <ul class="dropdown-menu">
-                                                                <li class="dropdown-divider">
-                                                                    <div class="fa fa-user"></div>
-                                                                    <h5 class="text-muted">اختصاص به</h5>
-                                                                </li>
-                                                                <li><a href="#">الهام جعفری</a></li>
-                                                                <li><a href="#">سعید مظفری</a></li>
-                                                                <li><a href="#">رویا مرادی</a></li>
-                                                                <li><a href="#">علی علوی</a></li>
-                                                            </ul>
-                                                        </div>
-                                                        <input class="datepicker-persian form-control digits" type="url"
-                                                               data-language="en"
-                                                               placeholder="تاریخ انجام"/>
-                                                    </div>
-                                                </div>
-                                                <div class="todo-list">
-                                                    <div class="element" id="div_1"><span
-                                                            class="add add-to-do">افزودن کار</span></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="tab-pane fade" id="todo2">
-                                        <div class="converstaion-docs tab-card"><i class="fa fa-sticky-note-o"></i>
-                                            <h5 class="mb-3">لیست کارها</h5><a class="btn btn-primary btn-sm"
-                                                                               data-toggle="modal"
-                                                                               data-target="#createtodoModal">افزودن یک
-                                                کار</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li id="files">
-
-
-                    </li>
-                    <li id="notes">
-
-
-                    </li>
-                    <li id="reminder">
-
-
-                    </li>
+                    <li id="todo"></li>
+                    <li id="files"></li>
+                    <li id="notes"></li>
+                    <li id="reminder"></li>
                 </ul>
             </div>
             <div class="app-list">
@@ -1032,19 +834,19 @@
                     <li class="title apps-toggle"><i data-feather="grid"></i>
                         <h5>برنامه ها</h5>
                     </li>
-                    <li><a class="icon-btn btn-outline-success btn-sm button-effect" href="files"><i
+                    <li onclick="filesList()"><a class="icon-btn btn-outline-success btn-sm button-effect" href="files"><i
                             data-feather="file"></i></a>
                         <h5>فایل </h5>
                     </li>
-                    <li><a class="icon-btn btn-outline-primary btn-sm button-effect" href="notes"><i
+                    <li onclick="noteList()"><a class="icon-btn btn-outline-primary btn-sm button-effect" href="notes"><i
                             data-feather="book"></i></a>
                         <h5>یادداشت </h5>
                     </li>
-                    <li><a class="icon-btn btn-outline-danger btn-sm button-effect" href="todo"><i
+                    <li onclick="toDoList()"><a class="icon-btn btn-outline-danger btn-sm button-effect" href="todo"><i
                             data-feather="list"></i></a>
                         <h5>کار(TODO) </h5>
                     </li>
-                    <li><a class="icon-btn btn-outline-warning btn-sm button-effect" href="reminder"><i
+                    <li onclick="reminderList()"><a class="icon-btn btn-outline-warning btn-sm button-effect" href="reminder"><i
                             data-feather="clock"></i></a>
                         <h5>یادآور</h5>
                     </li>
@@ -1306,45 +1108,7 @@
         </div>
     </div>
     <div class="viddiolog modal fade" id="videocall" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-body">
-                <div class="videocall call-modal"><img class="bg-img" src="assets/images/avtar/big/videocall_bg.jpg"
-                                                       alt="Avatar"/>
-                    <div class="small-image"><img class="bg-img" src="assets/images/avtar/big/videocall.jpg"
-                                                  alt="Avatar"/>
-                    </div>
-                    <div class="media videocall-details">
-                        <div class="usersprof">
-                            <div class="profile"><img class="bg-img" src="assets/images/avtar/2.jpg" alt="Avatar"/>
-                            </div>
-                            <div class="profile"><img class="bg-img" src="assets/images/avtar/3.jpg" alt="Avatar"/>
-                            </div>
-                        </div>
-                        <div class="media-body">
-                            <h5>سعید مظفری</h5>
-                            <h6>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم</h6>
-                        </div>
-                        <div id="basicUsage">00:00:00</div>
-                        <div class="zoomcontent"><a class="text-dark" href="#!" onclick="javascript:toggleFullScreen()"
-                                                    data-tippy-content="تمام صفحه"><img
-                                src="assets/images/logo/maximize.svg" alt="zoom screen"/></a>
-                        </div>
-                    </div>
-                    <div class="center-con text-center">
-                        <ul>
-                            <li><a class="icon-btn btn-light button-effect pause" href="#"
-                                   data-tippy-content="توقف موقتی"><i
-                                    class="ti-control-pause"></i></a></li>
-                            <li><a class="icon-btn btn-danger button-effect btn-xl is-animating" href="#"
-                                   data-dismiss="modal"
-                                   data-tippy-content="قطع کردن"> <i data-feather="phone"></i></a></li>
-                            <li><a class="icon-btn btn-light button-effect mic" href="#" data-tippy-content="بی صدا"><i
-                                    class="fa fa-microphone"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
+
     </div>
     <div class="modal fade" id="confercall" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -1382,18 +1146,18 @@
                 <div class="modal-body">
                     <div class="row confimg">
                         <div class="col-6">
-                            <div class="vclimg"><img class="bg-img" src="assets/images/avtar/big/videocall_bg.jpg"
+                            <div class="vclimg"><img class="bg-img" src="{% static 'images/avtar/big/videocall_bg.jpg' %}"
                                                      alt="Avatar"/>
                             </div>
                         </div>
                         <div class="col-6">
-                            <div class="vclimg"><img class="bg-img" src="assets/images/avtar/5.jpg" alt="Avatar"/></div>
+                            <div class="vclimg"><img class="bg-img" src="{% static 'images/avtar/5.jpg' %}" alt="Avatar"/></div>
                         </div>
                         <div class="col-6">
-                            <div class="vclimg"><img class="bg-img" src="assets/images/avtar/2.jpg" alt="Avatar"/></div>
+                            <div class="vclimg"><img class="bg-img" src="{% static 'images/avtar/2.jpg' %}" alt="Avatar"/></div>
                         </div>
                         <div class="col-6">
-                            <div class="vclimg"><img class="bg-img" src="assets/images/avtar/3.jpg" alt="Avatar"/></div>
+                            <div class="vclimg"><img class="bg-img" src="{% static 'images/avtar/3.jpg' %}" alt="Avatar"/></div>
                         </div>
                     </div>
                 </div>
@@ -1646,4 +1410,7 @@
             </div>
         </div>
     </div>
+
+
+
 {% endblock %}

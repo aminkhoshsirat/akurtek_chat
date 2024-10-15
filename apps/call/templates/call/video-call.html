@@ -1,0 +1,319 @@
+{% load static %}
+<div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-body">
+        <div class="videocall call-modal"><img class="bg-img" src="{% static 'images/avtar/big/videocall_bg.jpg' %}"
+                                               alt="Avatar"/>
+            <div class="small-image"><img class="bg-img" src="{% static 'images/avtar/big/videocall.jpg' %}"
+                                          alt="Avatar"/>
+            </div>
+            <div class="media videocall-details">
+                <div class="usersprof">
+                    <div class="profile"><img class="bg-img" src="{% static 'images/avtar/2.jpg' %}" alt="Avatar"/>
+                    </div>
+                    <div class="profile"><img class="bg-img" src="{% static 'images/avtar/3.jpg' %}" alt="Avatar"/>
+                    </div>
+                </div>
+                <div class="media-body">
+                    <h5>سعید مظفری</h5>
+                    <h6>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم</h6>
+                </div>
+                <div id="basicUsage">00:00:00</div>
+                <div class="zoomcontent"><a class="text-dark" href="#!" onclick="javascript:toggleFullScreen()"
+                                            data-tippy-content="تمام صفحه"><img
+                        src="{% static 'images/logo/maximize.svg' %}" alt="zoom screen"/></a>
+                </div>
+            </div>
+            <div class="center-con text-center">
+                <ul>
+                    <li><a class="icon-btn btn-light button-effect pause" href="#"
+                           data-tippy-content="توقف موقتی"><i
+                            class="ti-control-pause"></i></a></li>
+                    <li><a class="icon-btn btn-danger button-effect btn-xl is-animating" href="#"
+                           data-dismiss="modal"
+                           data-tippy-content="قطع کردن"> <i data-feather="phone"></i></a></li>
+                    <li><a class="icon-btn btn-light button-effect mic" href="#" data-tippy-content="بی صدا"><i
+                            class="fa fa-microphone"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="{% static 'js/feather-icon/feather.min.js' %}"></script>
+<script src="{% static 'js/feather-icon/feather-icon.js' %}"></script>
+<script src="{% static 'js/ckeditor/ckeditor.js' %}"></script>
+<script src="{% static 'js/ckeditor/styles.js' %}"></script>
+<script src="{% static 'js/ckeditor/adapters/jquery.js' %}"></script>
+<script src="{% static 'js/ckeditor/ckeditor.custom.js' %}"></script>
+<script src="{% static 'js/date-picker/datepicker.js' %}"></script>
+<script src="{% static 'js/date-picker/datepicker.en.js' %}"></script>
+<script src="{% static 'js/date-picker/datepicker.custom.js' %}"></script>
+{#  <script src="{% static 'js/tour/intro.js' %}"></script>#}
+{#  <script src="{% static 'js/tour/intro-init.js' %}"></script>#}
+<script src="{% static 'js/jquery.magnific-popup.js' %}"></script>
+<script src="{% static 'js/zoom-gallery.js' %}"></script>
+<script src="{% static 'js/script.js' %}"></script>
+<script src="{% static 'js/jquery.md.bootstrap.datetimepicker.js' %}"></script>
+
+<script>
+    const configuration = {
+        iceServers: [
+            {
+                urls: 'stun:stun.l.google.com:19302' // Google's public STUN server
+            }
+        ]
+    };
+
+    const socket = new WebSocket(
+        'ws://' + window.location.host +
+        '/ws/videochat/');
+
+
+    let pc;
+    var isOfferer = false;
+    var video_thread_id = 0;
+    const VC_CONTACTING = 0, VC_NOT_AVAILABLE = 1, VC_ACCEPTED = 2,
+        VC_REJECTED = 3, VC_BUSY = 4, VC_PROCESSING = 5, VC_ENDED = 6;
+
+    var localVideo = document.querySelector('#video-emitter');
+    var remoteVideo = document.querySelector('#video-receiver');
+    var CallTimeOutId = 0;
+    var CallTimerId = 0;
+
+
+    socket.onmessage = function(e) {
+        var message = JSON.parse(e.data);
+
+        switch (message.type) {
+            case 'offerResult':
+                status = message.status;
+
+                switch (parseInt(status)) {
+                    case 404:
+                        $("#offer-status-modal").modal('show').find('.modal-body').text("User is not found.");
+                        enableCallViews();
+                        break;
+                    case VC_CONTACTING:
+                        video_thread_id = message.video_thread_id;
+                        document.querySelector('#call-status').innerHTML = "Contacting...";
+                        CallTimeOutId = setInterval(() => {
+                            sendMessage({'type': 'cancelOffer'})
+                            clearInterval(CallTimeOutId);
+                        }, 25000);
+                        break;
+                    case VC_NOT_AVAILABLE:
+                        clearInterval(CallTimeOutId);
+                        enableCallViews();
+                        $("#offer-status-modal").modal('show').find('.modal-body').text("User is not avaiable.");
+                        break;
+                    case VC_ACCEPTED:
+                        clearInterval(CallTimeOutId);
+                        document.querySelector('#call-status').innerHTML = "User accepted. Connecting...";
+                        isOfferer = true;
+                        startWebRTC()
+                        break;
+                    case VC_REJECTED:
+                        clearInterval(CallTimeOutId);
+                        enableCallViews();
+                        $("#offer-status-modal").modal('show').find('.modal-body').text("User rejected your call request.");
+                        break;
+                    case VC_BUSY:
+                        enableCallViews();
+                        $("#offer-status-modal").modal('show').find('.modal-body').text("User is busy.");
+                        break;
+                    case VC_ENDED:
+                        $('#btnCall').removeClass("d-none");
+                        $('#btnHangup').addClass("d-none");
+                        enableCallViews();
+                        pc.close();
+                        pc = null;
+
+                        localVideo.srcObject.getTracks().forEach(track => track.stop())
+                        localVideo.srcObject = null;
+                        remoteVideo.srcObject.getTracks().forEach(track => track.stop())
+                        remoteVideo.srcObject = null;
+
+                        clearInterval(CallTimerId);
+                        $("#offer-status-modal").modal('show').find('.modal-body').text("Video Call was finished.");
+                        break;
+                    default:
+                        break;
+                }
+
+                break;
+
+            case 'offer':
+                disableCallViews();
+                $('#id_username').val(message.username);
+                video_thread_id = message.video_thread_id
+                $("#call-request-modal").modal('show').find('.modal-body').text(message.username + " wants to call you.\n Would you like to accept that?");
+                break;
+            case 'offerFinished':
+                video_thread_id = 0;
+                enableCallViews();
+                $("#call-request-modal").modal('hide');
+                break;
+            case 'callerData':
+                $('#btnHangup').removeClass("d-none");
+                $('#btnCall').addClass("d-none");
+                document.querySelector('#call-status').innerHTML = "Connected";
+                handleRTCMessage(message)
+                break;
+            case 'calleeData':
+                $('#btnHangup').removeClass("d-none");
+                $('#btnCall').addClass("d-none");
+                document.querySelector('#call-status').innerHTML = "Connected";
+                handleRTCMessage(message)
+                break;
+            default:
+                break;
+        }
+
+    };
+
+    socket.onclose = function(e) {
+        clearInterval(CallTimerId);
+        console.error('Socket closed unexpectedly');
+    };
+
+
+    function onSuccess() {};
+    function onError(error) {
+        console.error(error);
+    };
+
+    function disableCallViews(){
+        $('#btnCall').addClass("disabled");
+        $('#id_username').attr('readonly', true);
+    }
+
+    function enableCallViews(){
+        $('#btnCall').removeClass("disabled");
+        $('#id_username').removeAttr('readonly');
+        $('#call-status').html("");
+    }
+
+    function get_elapsed_time_string(total_seconds) {
+        function pretty_time_string(num) {
+            return ( num < 10 ? "0" : "" ) + num;
+        }
+
+        var hours = Math.floor(total_seconds / 3600);
+        total_seconds = total_seconds % 3600;
+
+        var minutes = Math.floor(total_seconds / 60);
+        total_seconds = total_seconds % 60;
+
+        var seconds = Math.floor(total_seconds);
+
+        // Pad the minutes and seconds with leading zeros, if required
+        hours = pretty_time_string(hours);
+        minutes = pretty_time_string(minutes);
+        seconds = pretty_time_string(seconds);
+
+        // Compose the string for display
+        var currentTimeString = hours + ":" + minutes + ":" + seconds;
+
+        return currentTimeString;
+    }
+
+    function sendMessage(message) {
+        message['video_thread_id'] = video_thread_id;
+        socket.send(JSON.stringify(message));
+    }
+
+    function sendRTCMessage(message) {
+        message['type'] = isOfferer ? "callerData" : "calleeData";
+        message['video_thread_id'] = video_thread_id;
+        socket.send(JSON.stringify(message));
+    }
+
+    function startWebRTC() {
+        pc = new RTCPeerConnection(configuration);
+
+        // 'onicecandidate' notifies us whenever an ICE agent needs to deliver a
+        // message to the other peer through the signaling server
+        pc.onicecandidate = event => {
+            if (event.candidate) {
+                sendRTCMessage({'candidate': event.candidate});
+            }
+        };
+
+        // If user is offerer let the 'negotiationneeded' event create the offer
+        if (isOfferer) {
+            pc.onnegotiationneeded = () => {
+                pc.createOffer().then(localDescCreated).catch(onError);
+            }
+        }
+
+        // When a remote stream arrives display it in the #remoteVideo element
+        pc.onaddstream = event => {
+            remoteVideo.srcObject = event.stream;
+            var elapsed_seconds = 0;
+            CallTimerId = setInterval(function() {
+                elapsed_seconds = elapsed_seconds + 1;
+                $('#call-status').html(get_elapsed_time_string(elapsed_seconds));
+            }, 1000);
+        };
+
+        navigator.mediaDevices.getUserMedia({
+            audio: true,
+            video: true,
+        }).then(stream => {
+            // Display your local video in #localVideo element
+            localVideo.srcObject = stream;
+            // Add your stream to be sent to the conneting peer
+            pc.addStream(stream);
+        }, onError);
+    }
+
+    function handleRTCMessage(message) {
+        if (message.sdp) {
+            // This is called after receiving an offer or answer from another peer
+            pc.setRemoteDescription(new RTCSessionDescription(message.sdp), () => {
+                // When receiving an offer lets answer it
+                if (pc.remoteDescription.type === 'offer') {
+                    pc.createAnswer().then(localDescCreated).catch(onError);
+                }
+            }, onError);
+        } else if (message.candidate) {
+            // Add the new ICE candidate to our connections remote description
+            pc.addIceCandidate(
+                new RTCIceCandidate(message.candidate), onSuccess, onError
+            );
+        }
+    };
+
+    function localDescCreated(desc) {
+        pc.setLocalDescription(
+            desc,
+            () => sendRTCMessage({'sdp': pc.localDescription}),
+            onError
+        );
+    }
+
+    document.querySelector('#btnCall').onclick = function(e) {
+        var usernameInputDom = document.querySelector('#id_username');
+        var username = usernameInputDom.value;
+        document.querySelector('#call-status').innerHTML = "Looking for user...";
+        disableCallViews();
+        sendMessage({'type': "createOffer", 'username': username})
+    };
+
+    document.querySelector('#btnHangup').onclick = function(e) {
+        sendMessage({'type': "hangUp"})
+    };
+
+    document.querySelector('#btnAcceptOffer').onclick = function(e) {
+        $('#call-request-modal').modal('hide');
+        sendMessage({'type': "acceptOffer"})
+        isOfferer = false;
+        startWebRTC()
+    };
+
+    document.querySelector('#btnDeclineOffer').onclick = function(e) {
+        $('#call-request-modal').modal('hide');
+        enableCallViews();
+        sendMessage({'type': "rejectOffer"})
+    };
+</script>

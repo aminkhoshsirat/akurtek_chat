@@ -1,9 +1,10 @@
+{% load static %}
 <div class="my-status-box">
     <div class="status-content">
         <div class="media">
             <div class="img-status">
                 <div class="user-status two"><img class="img-fluid bg-img"
-                                                  src="assets/images/avtar/girls.jpg"
+                                                  src="{% static 'images/avtar/girls.jpg' %}"
                                                   alt="status"/></div>
                 <div class="upload-img">
                     <input type="file"/>
@@ -27,10 +28,10 @@
     <div class="status-content">
         <ul>
             <li class="user-status"><a class="lightbox img-status status" href="#statusbox"><img
-                    class="img-fluid bg-img" src="assets/images/status-img/small/sm-1.jpg"
+                    class="img-fluid bg-img" src="{% static 'images/status-img/small/sm-1.jpg' %}"
                     alt="status"/></a>
                 <div class="lightbox-target" id="statusbox"><img
-                        src="assets/images/status-img/large/lg-1.jpg"
+                        src="{% static 'images/status-img/large/lg-1.jpg' %}"
                         alt="status"/><a class="lightbox-close" href="#"></a></div>
             </li>
             <li>
@@ -42,3 +43,19 @@
 
 
 </div>
+
+  <script src="{% static 'js/feather-icon/feather.min.js' %}"></script>
+  <script src="{% static 'js/feather-icon/feather-icon.js' %}"></script>
+  <script src="{% static 'js/ckeditor/ckeditor.js' %}"></script>
+  <script src="{% static 'js/ckeditor/styles.js' %}"></script>
+  <script src="{% static 'js/ckeditor/adapters/jquery.js' %}"></script>
+  <script src="{% static 'js/ckeditor/ckeditor.custom.js' %}"></script>
+  <script src="{% static 'js/date-picker/datepicker.js' %}"></script>
+  <script src="{% static 'js/date-picker/datepicker.en.js' %}"></script>
+  <script src="{% static 'js/date-picker/datepicker.custom.js' %}"></script>
+  <script src="{% static 'js/tour/intro.js' %}"></script>
+  <script src="{% static 'js/tour/intro-init.js' %}"></script>
+  <script src="{% static 'js/jquery.magnific-popup.js' %}"></script>
+  <script src="{% static 'js/zoom-gallery.js' %}"></script>
+  <script src="{% static 'js/script.js' %}"></script>
+  <script src="{% static 'js/jquery.md.bootstrap.datetimepicker.js' %}"></script>

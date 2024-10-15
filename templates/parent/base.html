@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 {% load static %}
 <html lang="fa">
-
 <head>
     <title>{% block title %}{% endblock %}</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -23,196 +22,170 @@
     <link rel="stylesheet" type="text/css" href="{% static 'js/ckeditor/skins/moono-lisa/editor.css?t=HBDD' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'js/ckeditor/plugins/scayt/skins/moono-lisa/scayt.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'js/ckeditor/plugins/scayt/dialogs/dialog.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'js/ckeditor/plugins/tableselection/styles/tableselection.css' %}">
+    <link rel="stylesheet" type="text/css"
+          href="{% static 'js/ckeditor/plugins/tableselection/styles/tableselection.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'js/ckeditor/plugins/wsc/skins/moono-lisa/wsc.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'js/ckeditor/plugins/copyformatting/styles/copyformatting.css' %}">
+    <link rel="stylesheet" type="text/css"
+          href="{% static 'js/ckeditor/plugins/copyformatting/styles/copyformatting.css' %}">
     <!-- Farsi fonts stylesheet ; for more information ; https://rastikerdar.github.io/vazirmatn/ -->
     <link rel="stylesheet" href="{% static 'fonts/vazir/Farsi-Digits/Vazirmatn-FD-font-face.css' %}">
     <link rel="stylesheet" href="{% static 'css/custom.css' %}">
     <!-- Persian date-time picker -->
     <link rel="stylesheet" href="{% static 'css/jquery.md.bootstrap.datetimepicker.style.css' %}">
+
     <style>
-        .replies .media .media-body .contact-name,
-        .replies .media .media-body .contact-name h5,
-        .replies .media .media-body .contact-name h6 {
-            direction: ltr;
-            text-align: left;
-        }
+    .replies .media .media-body .contact-name,
+    .replies .media .media-body .contact-name h5,
+    .replies .media .media-body .contact-name h6 {
+      direction: ltr;
+      text-align: left;
+    }
 
-        .msg-setting-main .msg-dropdown-main .msg-dropdown {
-            right: unset;
-            left: 0;
-            text-align: right;
-        }
+    .msg-setting-main .msg-dropdown-main .msg-dropdown {
+      right: unset;
+      left: 0;
+      text-align: right;
+    }
 
-        .sent .media .media-body .msg-box .msg-setting-main .msg-dropdown-main .msg-dropdown ul li a {
-            color: #595959;
-            width: 100%;
-            display: flex;
-            flex-direction: row;
-            align-content: space-between;
-            justify-content: space-between;
-        }
+    .sent .media .media-body .msg-box .msg-setting-main .msg-dropdown-main .msg-dropdown ul li a {
+      color: #595959;
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      align-content: space-between;
+      justify-content: space-between;
+    }
 
-        .sent .media .media-body .msg-box .msg-setting-main .msg-dropdown-main .msg-dropdown ul li a i {
-            font-size: 16px;
-            display: inline;
-            margin-left: 15px;
-            margin-right: unset;
-        }
+    .sent .media .media-body .msg-box .msg-setting-main .msg-dropdown-main .msg-dropdown ul li a i {
+      font-size: 16px;
+      display: inline;
+      margin-left: 15px;
+      margin-right: unset;
+    }
 
-        .replies .media .media-body .msg-box .msg-setting-main .msg-dropdown-main .msg-dropdown ul li a {
-            color: #595959;
-            width: 100%;
-            display: flex;
-            flex-direction: row-reverse;
-            align-content: space-between;
-            justify-content: space-between;
-        }
+    .replies .media .media-body .msg-box .msg-setting-main .msg-dropdown-main .msg-dropdown ul li a {
+      color: #595959;
+      width: 100%;
+      display: flex;
+      flex-direction: row-reverse;
+      align-content: space-between;
+      justify-content: space-between;
+    }
 
-        .replies .media .media-body .msg-box .msg-setting-main .msg-dropdown-main .msg-dropdown ul li a i {
-            font-size: 16px;
-            display: inline;
-            margin-left: 15px;
-            margin-right: unset;
-        }
+    .replies .media .media-body .msg-box .msg-setting-main .msg-dropdown-main .msg-dropdown ul li a i {
+      font-size: 16px;
+      display: inline;
+      margin-left: 15px;
+      margin-right: unset;
+    }
 
-        .app-list-ul .title {
-            border-bottom: 1px solid #eff1f2;
-            padding-bottom: 15px;
-            cursor: pointer;
-            display: flex;
-            flex-direction: column;
-            align-content: center;
-            justify-content: center;
-            align-items: center;
-        }
+    .app-list-ul .title {
+      border-bottom: 1px solid #eff1f2;
+      padding-bottom: 15px;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-content: center;
+      justify-content: center;
+      align-items: center;
+    }
 
-        .app-list-ul li {
-            margin-bottom: 20px;
-            display: flex;
-            flex-direction: column;
-            align-content: center;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        
-        
-        
-        .form-group input::placeholder {
-            text-align: right;
-            direction: rtl;
-        }
-
-        .form-group input {
-            text-align: left;
-            direction: ltr;
-        }
-
-        .termscondition h4 {
-            text-align: center;
-        }
-
-        .login-page1 {
-            height: unset;
-            overflow-x: hidden;
-        }
-
-        .login-page1 .login-contain-main {
-            height: unset;
-        }
-
-        body {
-            overflow-y: auto;
-        }
-    </style>
+    .app-list-ul li {
+      margin-bottom: 20px;
+      display: flex;
+      flex-direction: column;
+      align-content: center;
+      justify-content: center;
+      align-items: center;
+    }
+  </style>
 </head>
 <body class="rtl sidebar-active">
 {% block content %}
-    
+
 {% endblock %}
 <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
-        <script src="{% static 'js/owl.carousel.js' %}"></script>
-        <script src="{% static 'js/popper.min.js' %}"></script>
-        <script src="{% static 'js/tippy-bundle.iife.min.js' %}"></script>
-        <script src="{% static 'js/bootstrap.js' %}"></script>
-        <script src="{% static 'js/switchery.js' %}"></script>
-        <script src="{% static 'js/easytimer.min.js' %}"></script>
-        <script src="{% static 'js/index.js' %}"></script>
-        <script src="{% static 'js/feather-icon/feather.min.js' %}"></script>
-        <script src="{% static 'js/feather-icon/feather-icon.js' %}"></script>
-        <script src="{% static 'js/ckeditor/ckeditor.js' %}"></script>
-        <script src="{% static 'js/ckeditor/styles.js' %}"></script>
-        <script src="{% static 'js/ckeditor/adapters/jquery.js' %}"></script>
-        <script src="{% static 'js/ckeditor/ckeditor.custom.js' %}"></script>
-        <script src="{% static 'js/date-picker/datepicker.js' %}"></script>
-        <script src="{% static 'js/date-picker/datepicker.en.js' %}"></script>
-        <script src="{% static 'js/date-picker/datepicker.custom.js' %}"></script>
-        <script src="{% static 'js/tour/intro.js' %}"></script>
-        <script src="{% static 'js/tour/intro-init.js' %}"></script>
-        <script src="{% static 'js/jquery.magnific-popup.js' %}"></script>
-        <script src="{% static 'js/zoom-gallery.js' %}"></script>
-        <script src="{% static 'js/script.js' %}"></script>
-        <script src="{% static 'js/jquery.md.bootstrap.datetimepicker.js' %}"></script>
-        <script>
-            $(document).ready(function () {
-                $(".datepicker-persian").MdPersianDateTimePicker({
-                    enableTimePicker: false, // set true if you want to enable time picking inputs in picker
-                    targetTextSelector: ".datepicker-persian",// target DOM element to display date-time to user
-                    textFormat: "yyyy-MM-dd",
-                    isGregorian: false,
-                    modalMode: true,// set false to enable popover mode instead modal
-                    englishNumber: false // set true if you want to show english digits
-                });
+  <script src="{% static 'js/owl.carousel.js' %}"></script>
+  <script src="{% static 'js/popper.min.js' %}"></script>
+  <script src="{% static 'js/tippy-bundle.iife.min.js' %}"></script>
+  <script src="{% static 'js/bootstrap.js' %}"></script>
+  <script src="{% static 'js/switchery.js' %}"></script>
+  <script src="{% static 'js/easytimer.min.js' %}"></script>
+  <script src="{% static 'js/index.js' %}"></script>
+  <script src="{% static 'js/feather-icon/feather.min.js' %}"></script>
+  <script src="{% static 'js/feather-icon/feather-icon.js' %}"></script>
+  <script src="{% static 'js/ckeditor/ckeditor.js' %}"></script>
+  <script src="{% static 'js/ckeditor/styles.js' %}"></script>
+  <script src="{% static 'js/ckeditor/adapters/jquery.js' %}"></script>
+  <script src="{% static 'js/ckeditor/ckeditor.custom.js' %}"></script>
+  <script src="{% static 'js/date-picker/datepicker.js' %}"></script>
+  <script src="{% static 'js/date-picker/datepicker.en.js' %}"></script>
+  <script src="{% static 'js/date-picker/datepicker.custom.js' %}"></script>
+{#  <script src="{% static 'js/tour/intro.js' %}"></script>#}
+{#  <script src="{% static 'js/tour/intro-init.js' %}"></script>#}
+  <script src="{% static 'js/jquery.magnific-popup.js' %}"></script>
+  <script src="{% static 'js/zoom-gallery.js' %}"></script>
+  <script src="{% static 'js/script.js' %}"></script>
+  <script src="{% static 'js/jquery.md.bootstrap.datetimepicker.js' %}"></script>
+  <script>
+    $(document).ready(function () {
+      $(".datepicker-persian").MdPersianDateTimePicker({
+        enableTimePicker: false, // set true if you want to enable time picking inputs in picker
+        targetTextSelector: ".datepicker-persian",// target DOM element to display date-time to user
+        textFormat: "yyyy-MM-dd",
+        isGregorian: false,
+        modalMode: true,// set false to enable popover mode instead modal
+        englishNumber: false // set true if you want to show english digits
+      });
 
-                /*=====================
-          05. Search js
-          ==========================*/
-                $(".search").on("click", function (e) {
-                    $(this).siblings().toggleClass("open");
-                    $(this).parent().find(".form-inline").toggleClass("open");
-                });
-                $(".close-search").on("click", function (e) {
-                    $(this).parent().parent().removeClass("open");
-                });
-                $(".search-right").on("click", function (e) {
-                    try {
-                        $(this)
-                            .parent()
-                            .parent()
-                            .parent()
-                            .parent()
-                            .parent()
-                            .find(".form-inline")
-                            .toggleClass("open");
-                        $(this)
-                            .parent()
-                            .parent()
-                            .parent()
-                            .parent()
-                            .parent()
-                            .parent()
-                            .find(".form-inline")
-                            .toggleClass("open");
-                        $(this)
-                            .parent()
-                            .parent()
-                            .parent()
-                            .parent()
-                            .parent()
-                            .parent()
-                            .parent()
-                            .find(".form-inline")
-                            .toggleClass("open");
-                    } catch (error) {
-                    }
-                });
-                $(".close-search").on("click", function (e) {
-                    $(this).parent().parent().removeClass("open");
-                });
+      /*=====================
+  05. Search js
+  ==========================*/
+      $(".search").on("click", function (e) {
+        $(this).siblings().toggleClass("open");
+        $(this).parent().find(".form-inline").toggleClass("open");
+      });
+      $(".close-search").on("click", function (e) {
+        $(this).parent().parent().removeClass("open");
+      });
+      $(".search-right").on("click", function (e) {
+        try{
+          $(this)
+          .parent()
+          .parent()
+          .parent()
+          .parent()
+          .parent()
+          .find(".form-inline")
+          .toggleClass("open");
+          $(this)
+          .parent()
+          .parent()
+          .parent()
+          .parent()
+          .parent()
+          .parent()
+          .find(".form-inline")
+          .toggleClass("open");
+          $(this)
+          .parent()
+          .parent()
+          .parent()
+          .parent()
+          .parent()
+          .parent()
+          .parent()
+          .find(".form-inline")
+          .toggleClass("open");
+        }catch(error){
+        }
+      });
+      $(".close-search").on("click", function (e) {
+        $(this).parent().parent().removeClass("open");
+      });
 
-            });
-        </script>
+    });
+  </script>
+<script src="{% static 'js/custom.js' %}"></script>
 </body>
 </html>
